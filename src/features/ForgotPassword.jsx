@@ -131,7 +131,7 @@ function ForgotPassword() {
     }
   }, [toastMessage]);
   return (
-    <div className="h-lvh">
+    <div className="relative">
       {loading && (
         <div className="flex items-center justify-center">
           <Loader />
@@ -147,7 +147,7 @@ function ForgotPassword() {
             </div>
 
             <div className="w-full m-0 ">
-              <div className="max-w-[450px] m-auto">
+            <div className="max-w-[450px] m-auto p-4 lg:p-0">
                 <div className="space-y-2 mb-6">
                   <h1 className="text-[24px] font-normal">Forgot Password</h1>
                   <p className="text-gray-500 dark:text-gray-400 font-normal"> Enter your email to reset your password</p>

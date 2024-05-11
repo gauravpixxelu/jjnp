@@ -46,14 +46,14 @@ export function Footer() {
 
   return (
     <footer className="relative bottom-0 w-full ">
-      <div className="mx-auto w-full px-8 bg-blue-gray-500 py-12"
+      <div className="mx-auto w-full px-4 py-8 lg:px-8 bg-blue-gray-500 lg:py-12"
         style={{
           backgroundImage: `url('/footer-bg.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
         }}
       >
-        <div className="flex justify-between gap-4">
+        <div className="flex justify-between gap-8 flex-wrap lg:flex-nowrap lg:gap-4">
           <Link to="/">
             <img src="/white-logo.png" className="aspect-square h-auto" />
           </Link>
@@ -64,7 +64,7 @@ export function Footer() {
               <Typography
                 variant="small"
                 color="black"
-                className="mb-6 text-white uppercase text-[16px]"
+                className="mb-2 text-white uppercase text-[16px] lg:mb-6"
               >
                 {title}
               </Typography>
@@ -87,10 +87,10 @@ export function Footer() {
             color="black"
             className="text-white text-[16px]"
           >
-            <h5 className="mb-6">SIGN UP FOR JJNP’S UPDATES</h5>
+            <h5 className="mb-2 lg:mb-6">SIGN UP FOR JJNP’S UPDATES</h5>
             <Typography
               color="white"
-              className="py-1.5 w-[480px] text-[14px]"
+              className="py-1.5 max-w-[480px] text-[14px]"
             >
               By entering your email address below, you consent to receiving our newsletter with access to our latest collections, events and initiatives. More details on this are provided in our Privacy Policy
            

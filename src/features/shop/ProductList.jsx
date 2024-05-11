@@ -219,11 +219,15 @@ export default function ProductList() {
     <div className="">
       <Topbar progress={progress} />
       <Suspense fallback={<Loader />}>
-        <div className="p-2">
-          <Typography variant="h4" className="uppercase text-center">
-            Discover Our Products
-          </Typography>
+
+      <div className="relative bg-cover bg-center flex items-center justify-center min-h-[170px] lg:min-h-[400px]" style={{ backgroundImage: `url(./contact/contact-banner.jpg)` }}>
+          <div className="absolute inset-0 bg-black opacity-30"></div>
+          <div className="relative z-10 text-white text-center">
+            <h1 className="text-2xl lg:text-5xl font-bold">Discover Our Products</h1>
+          </div>
         </div>
+        
+  
         <div className="">
           {sortedProducts.length === 0 ? (
             <div className="">
@@ -232,188 +236,10 @@ export default function ProductList() {
           ) : (
             <>
               <div className="flex flex-col w-full bg-white text-black">
-                {/* Filter controls */}
-                {/* Popover for Categories */}
-                <div className="flex items-end justify-end gap-5 p-2 z-20">
-                  {/* <div className="cursor-pointer">
-                    <Popover
-                      placement="bottom"
-                      open={openCategoryPopover}
-                      handler={setOpenCategoryPopover}
-                    >
-                      <PopoverHandler
-                        onMouseEnter={() => setOpenCategoryPopover(true)}
-                        onMouseLeave={() => setOpenCategoryPopover(false)}
-                      >
-                        <Typography
-                          variant="small"
-                          className="focus:outline-none flex items-center uppercase text-xs"
-                        >
-                          {selectedCategories.length > 0 ? (
-                            <p className="flex flex-wrap gap-1">
-                              {selectedCategories.map((category, index) => (
-                                <span
-                                  key={index}
-                                  className="border border-gray-300 px-2 py-1 rounded"
-                                >
-                                  {category.label}
-                                </span>
-                              ))}
-                            </p>
-                          ) : (
-                            "Categories"
-                          )}
-                          <ChevronDownIcon className="w-5 h-5" />
-                        </Typography>
-                      </PopoverHandler>
-                      <PopoverContent
-                        onMouseEnter={() => setOpenCategoryPopover(true)}
-                        onMouseLeave={() => setOpenCategoryPopover(false)}
-                        className="z-50 max-w-[24rem]"
-                      >
-                        <div>
-                          {categoryOptions.map((category) => (
-                            <Checkbox
-                              key={category.id}
-                              className="cursor-pointer hover:text-gray-900"
-                              label={category.label}
-                              checked={selectedCategories.some(
-                                (c) => c.value === category.value
-                              )}
-                              onChange={(event) => {
-                                if (event.target.checked) {
-                                  setSelectedCategories([
-                                    ...selectedCategories,
-                                    category,
-                                  ]);
-                                } else {
-                                  setSelectedCategories(
-                                    selectedCategories.filter(
-                                      (c) => c.value !== category.value
-                                    )
-                                  );
-                                }
-                              }}
-                            />
-                          ))}
-                        </div>
-                      </PopoverContent>
-                    </Popover>
-                  </div> */}
 
-                  {/* Popover for Size */}
-                  {/* <div className="cursor-pointer">
-                    <Popover
-                      placement="bottom"
-                      open={openSizePopover}
-                      handler={setOpenSizePopover}
-                    >
-                      <PopoverHandler
-                        onMouseEnter={() => setOpenSizePopover(true)}
-                        onMouseLeave={() => setOpenSizePopover(false)}
-                      >
-                        <Typography
-                          variant="small"
-                          className="focus:outline-none flex items-center uppercase text-xs"
-                        >
-                          {selectedSizes.length > 0 ? (
-                            <p className="flex flex-wrap gap-1">
-                              {selectedSizes.map((size, index) => (
-                                <span
-                                  key={index}
-                                  className="border border-gray-300 px-2 py-1 rounded"
-                                >
-                                  {size.label}
-                                </span>
-                              ))}
-                            </p>
-                          ) : (
-                            "Sizes"
-                          )}
-                          <ChevronDownIcon className="w-5 h-5" />
-                        </Typography>
-                      </PopoverHandler>
-                      <PopoverContent
-                        onMouseEnter={() => setOpenSizePopover(true)}
-                        onMouseLeave={() => setOpenSizePopover(false)}
-                        className="z-50 max-w-[24rem]"
-                      >
-                        <div>
-                          {sizeOptions.map((size) => (
-                            <Checkbox
-                              key={size.id}
-                              className="cursor-pointer hover:text-gray-900"
-                              label={size.label}
-                              checked={selectedSizes.some(
-                                (s) => s.value === size.value
-                              )}
-                              onChange={(event) => {
-                                if (event.target.checked) {
-                                  setSelectedSizes([...selectedSizes, size]);
-                                } else {
-                                  setSelectedSizes(
-                                    selectedSizes.filter(
-                                      (s) => s.value !== size.value
-                                    )
-                                  );
-                                }
-                              }}
-                            />
-                          ))}
-                        </div>
-                      </PopoverContent>
-                    </Popover>
-                  </div>
-                  <div></div> */}
-
-                  {/* Popover for Sort By */}
-                  {/* <div className="cursor-pointer">
-                    <Popover
-                      placement="bottom"
-                      open={openSortByPopover}
-                      handler={setOpenSortByPopover}
-                    >
-                      <PopoverHandler
-                        onMouseEnter={() => setOpenSortByPopover(true)}
-                        onMouseLeave={() => setOpenSortByPopover(false)}
-                      >
-                        <Typography
-                          variant="small"
-                          className="focus:outline-none flex items-center uppercase text-xs"
-                        >
-                          {selectedSortBy ? (
-                            <p className="flex flex-wrap gap-1">
-                              {selectedSortBy.label}
-                            </p>
-                          ) : (
-                            "Sort By"
-                          )}
-                          <ChevronDownIcon className="w-5 h-5" />
-                        </Typography>
-                      </PopoverHandler>
-                      <PopoverContent
-                        onMouseEnter={() => setOpenSortByPopover(true)}
-                        onMouseLeave={() => setOpenSortByPopover(false)}
-                        className="z-50 max-w-[24rem]"
-                      >
-                        <div>
-                          {sortByOptions.map((sortBy) => (
-                            <Checkbox
-                              key={sortBy.id}
-                              className="cursor-pointer hover:text-gray-900"
-                              label={sortBy.label}
-                              checked={selectedSortBy?.value === sortBy.value}
-                              onChange={() => setSelectedSortBy(sortBy)}
-                            />
-                          ))}
-                        </div>
-                      </PopoverContent>
-                    </Popover>
-                  </div> */}
-                </div>
 
                 {/* Product card section */}
-                <div className="flex flex-wrap lg:block" ref={productListRef}>
+                <div className="flex flex-wrap lg:block lg:py-12 py-4" ref={productListRef}>
                   <Suspense fallback={<Loader />}>
                     {loading && <LoadingSkeleton />}
                     <ProductCard
@@ -426,23 +252,7 @@ export default function ProductList() {
                     />
                   </Suspense>
                 </div>
-
-                {/* Pagination */}
-                {/* <div className="flex justify-center mt-4">
-                  {Array.from({ length: totalPages }, (_, index) => (
-                    <button
-                      key={index}
-                      className={`px-4 py-2 mx-1 ${
-                        currentPage === index + 1
-                          ? "bg-black text-white"
-                          : "bg-gray-500 text-white"
-                      }`}
-                      onClick={() => setCurrentPage(index + 1)}
-                    >
-                      {index + 1}
-                    </button>
-                  ))}
-                </div> */}
+             
                 {showLoadMoreButton && (
                   <div className="flex justify-center mt-4">
                     <button

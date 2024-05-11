@@ -99,12 +99,12 @@ export default function NavbarMenu() {
       {isHomepage ? (
         <>
           <div className="flex items-center justify-center bg-gray-100 py-2">
-            <p className="text-black font-bold text-[14px]">
+            <p className="text-black font-bold text-[10px] lg:text-[14px]">
               OFFER!!!! 📢 20% off on all brand{" "}
             </p>
           </div>
 
-          <div className={`absolute z-50 py-4 px-8 w-full mx-auto bg-transparent ${isSticky ? 'sticky-nav' : ''}`}>
+          <div className={`absolute z-50 py-2 px-4 lg:py-4 lg:px-8 w-full mx-auto bg-transparent ${isSticky ? 'sticky-nav' : ''}`}>
             <div className="relative mx-auto flex items-center justify-between ">
               <div className={`relative cursor-pointer font-normal text-[14px] flex items-end gap-2 ${menuColor}`} onClick={toggleIsNavOpen}>
                 <Button
@@ -125,7 +125,7 @@ export default function NavbarMenu() {
                   <img
                     src={logoSrc}
                     alt=""
-                    className="mx-auto w-[105px] h-auto sm:mx-0 sm:shrink-0"
+                    className="mx-auto w-[70px] lg:[105px] h-auto sm:mx-0 sm:shrink-0"
                   />
                 </Link>
               </div>
@@ -135,7 +135,7 @@ export default function NavbarMenu() {
                   <NavList />
                 </div>
 
-                <div className="flex align-center gap-5">
+                <div className="flex align-center justify-end gap-2 lg:gap-5">
                   <Button
                     color={cartButtonColor}
                     className="p-0 bg-transparent shadow-none hover:shadow-none"
@@ -179,7 +179,7 @@ export default function NavbarMenu() {
       ) : (
 
 
-        <div className="sticky top-0 z-50 py-4 px-8 w-full bg-gray-100 shadow-[0px_0px_20px_0px_rgba(0,0,0,0.2)]">
+        <div className="sticky top-0 z-50 py-2 px-4 lg:py-4 lg:px-8 w-full bg-gray-100 shadow-[0px_0px_20px_0px_rgba(0,0,0,0.2)]">
           <div className="relative mx-auto flex items-center justify-between ">
               <div className={`relative cursor-pointer font-normal text-[14px] flex items-end gap-2 text-black`} onClick={toggleIsNavOpen}>
                 <Button            
@@ -199,7 +199,7 @@ export default function NavbarMenu() {
                   <img
                     src="../black-logo.png"
                     alt=""
-                    className="mx-auto w-[105px] h-auto sm:mx-0 sm:shrink-0"
+                    className="mx-auto w-[70px] lg:[105px] h-auto sm:mx-0 sm:shrink-0"
                   />
                 </Link>
               </div>
@@ -209,7 +209,7 @@ export default function NavbarMenu() {
                   <NavList />
                 </div>
 
-                <div className="flex align-center gap-5">
+                <div className="flex align-center justify-end gap-2 lg:gap-5">
                   <Button
                     className="p-0 text-black bg-transparent shadow-none hover:shadow-none"
                     onClick={() => navigate("/account")}

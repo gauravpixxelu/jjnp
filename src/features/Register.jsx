@@ -182,7 +182,7 @@ function Register() {
 
 
         <div className="w-full m-0 ">
-          <div className="max-w-[450px] m-auto">
+        <div className="max-w-[450px] m-auto p-4 lg:p-0">
             <div className="space-y-2 mb-6">
               <h1 className="text-[24px] font-normal">Register</h1>
               <p className="text-gray-500 dark:text-gray-400 font-normal">Enter your details to create account</p>

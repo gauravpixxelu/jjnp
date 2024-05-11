@@ -27,14 +27,14 @@ const categories = [
 
 const Categories = () => {
     return (
-        <section className="relative m-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <section className="relative lg:p-8 p-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-8 gap-4">
                 {categories.map((category, index) => (
                     <div key={index} className="relative">
                         <img className="w-full" src={category.image} alt="category" />
                         <div className="absolute bottom-20 text-center w-full">
                             {/* <h3 className="text-white text-[28px] font-bold">{category.title}</h3> */}
-                            <Link className="mt-4 inline-block bg-white text-black font-normal px-8 py-4 uppercase text-[14px]" to={category.link}>Shop Now</Link>
+                            <Link className="mt-4 inline-block bg-white text-black font-normal px-8 py-4 sm:py-2 uppercase text-[14px]" to={category.link}>Shop Now</Link>
                         </div>
                     </div>
                 ))}

@@ -15,4 +15,8 @@
     position: relative;
     width: 100%;
   }
+
+  .bannervideo {
+    height: 40vh; 
+  }
 }

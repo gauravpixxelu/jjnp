@@ -31,8 +31,8 @@ const services = [
 
 const Services = () => {
     return (
-        <section className="relative mx-8 mt-16 mb-12">
-            <h2 className="text-center text-4xl font-normal mb-8">
+        <section className="relative px-4 pt-4 pb-4 lg:px-8 lg:pt-16 lg:pb-12">
+            <h2 className="text-center text-4xl font-normal mb-4 lg:mb-8">
                 JJPN’s Services
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

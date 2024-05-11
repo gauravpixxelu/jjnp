@@ -68,20 +68,20 @@ function ContactUs() {
     <section className="relative">
       <Topbar progress={progress} />
 
-      <div className="relative bg-cover bg-center flex items-center justify-center min-h-[400px]" style={{ backgroundImage: `url(./contact/contact-banner.jpg)` }}>
-        <div className="absolute inset-0 bg-black opacity-30"></div>
-        <div className="relative z-10 text-white text-center">
-          <h1 className="text-3xl md:text-5xl font-bold">Contact Us</h1>
+      <div className="relative bg-cover bg-center flex items-center justify-center min-h-[170px] lg:min-h-[400px]" style={{ backgroundImage: `url(./contact/contact-banner.jpg)` }}>
+          <div className="absolute inset-0 bg-black opacity-30"></div>
+          <div className="relative z-10 text-white text-center">
+            <h1 className="text-2xl lg:text-5xl font-bold">Contact Us</h1>
+          </div>
         </div>
-      </div>
 
-      <div className="p-16">
+      <div className="py-8 px-4 lg:py-16">
         <div className="relative">
           <div className="text-center">
-            <h3 className="text-black text-[36px]">Contact Information</h3>
-            <p className="text-gray-700 text-[18px]">Reach out to us directly.</p>
+            <h3 className="text-black text-[24px] lg:text-[36px]">Contact Information</h3>
+            <p className="text-gray-700 text-[14px] lg:text-[18px]">Reach out to us directly.</p>
           </div>
-          <div className="flex justify-center gap-6 mt-8">
+          <div className="flex justify-center gap-4 mt-4 flex-wrap lg:gap-6 lg:mt-8 lg:flex-nowrap ">
             <div className="border bg-FBFBFB w-[400px] text-center px-16 py-8">
               <img className="m-auto mb-4" src="./contact/call.svg" alt="" />
               <p className="mb-2">Reach our customer service team during business hours.</p>
@@ -97,8 +97,8 @@ function ContactUs() {
 
         <div className="relative mt-16 max-w-[900px] mx-auto">
           <div className="text-center">
-            <h3 className="text-black text-[36px]">Contact Us</h3>
-            <p className="text-gray-700 text-[18px]">We are here to help. Please fill out the form below and we will get back to you as soon as possible.</p>
+            <h3 className="text-black text-[24px] lg:text-[36px]">Contact Us</h3>
+            <p className="text-gray-700 text-[14px] lg:text-[18px]">We are here to help. Please fill out the form below and we will get back to you as soon as possible.</p>
           </div>
           <div className="mt-8">
             <div className="space-y-2">
