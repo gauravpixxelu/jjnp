@@ -31,7 +31,7 @@ export function Footer() {
         navigate("/about-us");
         break;
       case "FAQ's":
-        navigate("/faq");
+        navigate("/Faqs");
         break;
       case "Product Care":
         navigate("/product-care");

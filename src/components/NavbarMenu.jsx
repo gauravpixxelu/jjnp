@@ -29,23 +29,19 @@ function NavList() {
   return (
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0  lg:p-1">
       <Typography
-        variant="small"
-        color="blue-gray"
         className="font-medium text-black"
       >
         <Link to={"/productList"}>
-          <ListItem className="flex items-center gap-2 py-2 pr-4">
+          <ListItem className="">
             Shop
           </ListItem>
         </Link>
       </Typography>
       <Typography
-        variant="small"
-        color="blue-gray"
         className="font-medium text-black"
         onClick={() => navigate("/contactus")}
       >
-        <ListItem className=" py-2 pr-4">
+        <ListItem className="">
           Contact Us
         </ListItem>
       </Typography>
@@ -156,6 +152,7 @@ export default function NavbarMenu() {
                   <Button
                     color={cartButtonColor}
                     className="p-0 bg-transparent shadow-none hover:shadow-none"
+                    onClick={() => navigate("/wishlist")}                   
                   >
                     <span>
                       <HeartIcon className="h-5 w-5" />

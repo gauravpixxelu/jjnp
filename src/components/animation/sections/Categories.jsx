@@ -34,7 +34,7 @@ const Categories = () => {
                         <img className="w-full" src={category.image} alt="category" />
                         <div className="absolute bottom-20 text-center w-full">
                             {/* <h3 className="text-white text-[28px] font-bold">{category.title}</h3> */}
-                            <Link className="mt-4 inline-block bg-white text-black font-normal px-8 py-4 sm:py-2 uppercase text-[14px]" to={category.link}>Shop Now</Link>
+                            <Link className="mt-4 inline-block bg-white text-black font-normal px-8 py-4 uppercase text-[14px]" to={category.link}>Shop Now</Link>
                         </div>
                     </div>
                 ))}

@@ -20,7 +20,9 @@ import {
   Tab,
   TabPanel,
 } from "@material-tailwind/react";
-import { ShoppingBagIcon } from "@heroicons/react/24/solid";
+
+
+import { ShoppingBagIcon, HeartIcon, } from "@heroicons/react/24/solid";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import ConfettiExplosion from "react-confetti-explosion";
 import axios from "axios";
@@ -38,6 +40,8 @@ import {
   ChevronDownIcon,
   ChevronUpDownIcon,
   ChevronUpIcon,
+  ChevronRightIcon,
+  ChevronLeftIcon,
   ExclamationCircleIcon,
   GifIcon,
   GiftTopIcon,
@@ -45,6 +49,11 @@ import {
 import { useAuth } from "../../config/AuthContext";
 import RoundedCard from "../../components/RoundedCard";
 import Topbar from "../../components/Topbar";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+
+
 
 export default function ViewProduct(props) {
   const navigate = useNavigate();
@@ -164,7 +173,7 @@ export default function ViewProduct(props) {
       );
       setWishlist(response.data.wishlist.wishlistItems);
       isProductInWishlist();
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const handlAddToWishlist = async () => {
@@ -246,7 +255,7 @@ export default function ViewProduct(props) {
           },
         }
       );
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const handleGetRelatedProducts = async () => {
@@ -361,22 +370,64 @@ export default function ViewProduct(props) {
 
   const defaultActiveTab = data[0].value;
 
+  var settings = {
+    dots: false,
+    arrows: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    nextArrow: <ChevronRightIcon />,
+    prevArrow: <ChevronLeftIcon />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
 
   return (
     <div className=" dark:bg-gray-950 bg-white text-black">
       <Topbar progress={progress} />
 
+      <div className="relative">
+        <Slider {...settings}>
+          <div><img src="../product/product1.jpg" className="w-full" alt="" /></div>
+          <div><img src="../product/product2.jpg" className="w-full" alt="" /></div>
+          <div><img src="../product/product1.jpg" className="w-full" alt="" /></div>
+          <div><img src="../product/product2.jpg" className="w-full" alt="" /></div>
+        </Slider>
+        <div className="absolute inset-x-0 inset-y-0 hidden flex-wrap items-center justify-center lg:flex  ">
+          <div className="z-50 w-[250px] h-[150px] flex items-center justify-center flex-wrap bg-white shadow-md">
+            <h3 className="text-black text-center text-[24px] font-bold w-full">{product.title} <span className="mt-0 lg:mt-1 font-normal block text-gray-700 text-[18px] w-full">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'INR' }).format(product.originalPrice)}</span>
+            </h3>
+          </div>
+        </div>
+      </div>
 
-      <div className="relative px-8 py-16">
-        <div className="flex">
+
+      <div className="relative py-4 px-4 lg:py-12 lg:px-8">
+        <div className="flex flex-wrap lg:flex-nowrap gap-4">
           <div className="w-full">
-            <h3 className="text-black text-[20px] font-bold">{product.title}</h3>
-            <p className="mt-1 font-normal text-gray-700 text-[16px]">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'INR' }).format(product.originalPrice)}</p>
+            <h3 className="text-black text-[16px] font-bold lg:text-[20px]">{product.title}</h3>
+            <p className="mt-0 lg:mt-1 font-normal text-gray-700 text-[16px]">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'INR' }).format(product.originalPrice)}</p>
           </div>
 
           <div className="w-full">
-            <h3 className="text-black text-[20px] font-bold ">Color</h3>
-            <div className="flex gap-2 mt-2">
+            <h3 className="text-black text-[16px] font-bold lg:text-[20px]">Color</h3>
+            <div className="flex gap-2 mt-1 lg:mt-2">
               {product.colors.map((color, index) => (
                 <label
                   key={index}
@@ -401,8 +452,8 @@ export default function ViewProduct(props) {
 
 
           <div className="w-full">
-            <h3 className="text-black text-[20px] font-bold">Size</h3>
-            <div className="flex gap-2 mt-2">
+            <h3 className="text-black text-[16px] font-bold lg:text-[20px]">Size</h3>
+            <div className="flex gap-2 mt-1 lg:mt-2">
               {product.sizes.map((size, index) => (
                 <label
                   key={index}
@@ -426,8 +477,8 @@ export default function ViewProduct(props) {
           </div>
 
           <div className="w-full">
-            <h3 className="text-black text-[20px] font-bold">Quantity</h3>
-            <div className="flex items-center mt-2">
+            <h3 className="text-black text-[16px] font-bold lg:text-[20px]">Quantity</h3>
+            <div className="flex items-center mt-1 lg:mt-2">
               <button
                 onClick={decreaseQuantity}
                 className="px-3 py-1 bg-gray-200 rounded-md"
@@ -456,10 +507,10 @@ export default function ViewProduct(props) {
               </Button>
               {!isProductInWishlist() ? (
                 <Button
-                  className="flex items-center justify-center px-16 h-14 rounded-none text-black bg-white border border-black	shadow-none text-[14px] font-normal"
+                  className="flex items-center justify-center w-14 h-14 rounded-none shadow-none text-[14px] font-normal p-1"
                   onClick={handlAddToWishlist}
                 >
-                  Add to wishlist
+                  <HeartIcon className="h-8 w-8" />
                 </Button>
               ) : (
                 <Button
@@ -481,8 +532,8 @@ export default function ViewProduct(props) {
       </div>
 
       <section className="bg-gray-100 ">
-        <div className="flex">
-          <div className="w-full py-12 px-8 ">
+        <div className="flex flex-wrap lg:flex-nowrap">
+          <div className="w-full py-4 px-4 lg:py-12 lg:px-8">
             <Tabs value="html" className="shadow-none">
               <TabsHeader className="shadow-none">
                 {data.map(({ label, value }) => (
@@ -538,21 +589,21 @@ export default function ViewProduct(props) {
   );
 }
 
-function HeartIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-    </svg>
-  );
-}
+// function HeartIcon(props) {
+//   return (
+//     <svg
+//       {...props}
+//       xmlns="http://www.w3.org/2000/svg"
+//       width="24"
+//       height="24"
+//       viewBox="0 0 24 24"
+//       fill="none"
+//       stroke="currentColor"
+//       strokeWidth="2"
+//       strokeLinecap="round"
+//       strokeLinejoin="round"
+//     >
+//       <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+//     </svg>
+//   );
+// }

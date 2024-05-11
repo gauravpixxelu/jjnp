@@ -6,7 +6,6 @@ import {
 } from "@material-tailwind/react";
 
 
-
 function Icon({ id, open }) {
   return (
     <svg
@@ -24,7 +23,6 @@ function Icon({ id, open }) {
 
 
 function FAQ() {
-
   const [open, setOpen] = React.useState(0);
 
   const handleOpen = (value) => setOpen(open === value ? 0 : value);

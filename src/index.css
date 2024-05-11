@@ -57,10 +57,30 @@
   font-weight: 100;
   font-style: normal;
 }
-
-
+.slick-slide div {
+  outline: 0;
+}
+.slick-slide div {
+  outline: 0;
+}
+.slick-slider .slick-arrow {
+  color: #000;
+  border: 1px solid #000;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  padding: 15px;
+  z-index: 99;
+}
+.slick-slider .slick-prev {
+  left: 30px;
+}
+.slick-slider .slick-next {
+  right: 30px;
+}
 * {
   font-family: 'Axiforma' !important;
+  overflow-x: hidden;
 }
 
 .sticky-nav {

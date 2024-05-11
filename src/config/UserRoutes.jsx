@@ -20,6 +20,12 @@ import withNavbar from "./WithnavBar";
 import ProtectedRoute from "./PrivateRoute";
 import withAuth from "./withAuth";
 import Home from "../components/animation/sections/Home";
+import FAQ from "../features/Faqs";
+import ProductCare from "../components/ProductCare";
+import AboutUs from "../components/AboutUs";
+import TermsnPrivacy from "../components/TermsnPrivacy";
+import ReturnPolicy from "../components/ReturnPolicy";
+
 
 function UserRoutes() {
   const { isLoggedIn } = useAuth();
@@ -45,6 +51,11 @@ function UserRoutes() {
   const ContactUsWithNavbar = withNavbar(ContactUs);
   const WishlistWithNavbar = withNavbar(Wishlist);
   const PlaceOrderWithNavbar = withNavbar(PlaceOrder);
+  const FAQWithNavbar = withNavbar(FAQ);
+  const ProductCareWithNavbar = withNavbar(ProductCare);
+  const AboutUsWithNavbar = withNavbar(AboutUs);
+  const TermsnPrivacyWithNavbar = withNavbar(TermsnPrivacy);
+  const ReturnPolicyWithNavbar = withNavbar(ReturnPolicy);
 
   //protected routes
   const ProtectedAccount = withAuth(ProfileWithNavbar);
@@ -78,6 +89,11 @@ function UserRoutes() {
       <Route
         path="register"
         element={<RegisterWithNavbar />}
+        onChange={(e) => handleRouteChange(e.pathname)}
+      />
+      <Route
+        path="/faqs"
+        element={<FAQWithNavbar />}
         onChange={(e) => handleRouteChange(e.pathname)}
       />
       <Route
@@ -133,6 +149,26 @@ function UserRoutes() {
       <Route
         path="wishlist"
         element={<ProtectedWishlist />}
+        onChange={(e) => handleRouteChange(e.pathname)}
+      />
+      <Route
+        path="product-care"
+        element={<ProductCareWithNavbar />}
+        onChange={(e) => handleRouteChange(e.pathname)}
+      />
+      <Route
+        path="about-us"
+        element={<AboutUsWithNavbar />}
+        onChange={(e) => handleRouteChange(e.pathname)}
+      />
+      <Route
+        path="terms"
+        element={<TermsnPrivacyWithNavbar />}
+        onChange={(e) => handleRouteChange(e.pathname)}
+      />
+      <Route
+        path="return-policy"
+        element={<ReturnPolicyWithNavbar />}
         onChange={(e) => handleRouteChange(e.pathname)}
       />
     </Routes>
