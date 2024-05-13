@@ -85,20 +85,7 @@ export default function Checkout() {
     }
   };
   const handlAddAddress = async () => {
-    // Check if pincode and address are provided
-    // if (addressData.pincode === "" || addressData.address === "") {
-    //   setAddressError("Pincode and Address are required.");
-    //   return;
-    // }
 
-    // Convert pincodeData keys to an array
-    // const availablePincodes = Object.keys(pincodeData);
-
-    // Check if the pincode exists in the availablePincodes array
-    // if (!availablePincodes.includes(addressData.pincode)) {
-    //   setAddressError("Sorry, we are not operating in this zone yet.");
-    //   return;
-    // }
 
     const accessToken1 = localStorage.getItem("accessToken");
 
@@ -280,16 +267,22 @@ export default function Checkout() {
       };
     }
   }, [toastMessage]);
-  return (
-    <div className=" w-full p-3">
+  return ( 
+    <div className="realtive">
       <Topbar progress={progress} />
-      <Link to={"/productList"} className="flex items-center">
-        <ChevronLeftIcon className="h-5 w-5 " />
-        <Typography>Back</Typography>
-      </Link>
-      <p className="text-2xl text-center text-slate-400 mb-5">Checkout</p>
 
-      <p className="text-left text-lg p-2">Select Delivery Address</p>
+      <div className="relative mb-2">
+        <div className="bg-black h-[200px] flex items-center justify-center">
+          <Typography
+            color="white"
+            className="absolute text-center text-white opacity-100 Capitalize text-[36px]"
+          >
+           Checkout
+          </Typography>
+        </div>
+      </div>
+     
+      <p className="text-left text-lg px-8 pt-4">Select Delivery Address</p>
       {!addressData && (
         <p className="text-2xl text-center  mb-5">Shipping Addresses</p>
       )}
@@ -297,7 +290,7 @@ export default function Checkout() {
       <Card
         color="transparent"
         shadow={false}
-        className="w-full p-2  overflow-auto rounded-none flex items-center justify-center "
+        className="w-full p-8  overflow-auto rounded-none flex items-center justify-center "
       >
         <CardBody className="mb-6 p-0 flex gap-2 flex-wrap ">
           {""}
@@ -383,44 +376,7 @@ export default function Checkout() {
           shadow={false}
           className="w-96 lg:w-1/2 p-2 border border-gray-500 rounded-none rflow-auto ove"
         >
-          {/* <CardHeader
-            color="transparent"
-            floated={false}
-            shadow={false}
-            className="mx-0 flex items-center gap-4 pt-0"
-          >
-            Select Delivery Address
-          </CardHeader> */}
-          {/* <CardBody className="mb-6 p-0">
-          {getAddressData &&
-            getAddressData.address &&
-            getAddressData.address.map((address, index) => (
-              <div key={index} className="mb-4">
-                <Card
-                  color="transparent"
-                  shadow={false}
-                  className="w-full border border-gray-500 rounded-md overflow-hidden"
-                >
-                  <CardBody className="p-4 ">
-                    <span>
-                      {address.address}, {address.city} , {address.state},{" "}
-                      {address.pincode},
-                    </span>
-                    <div className="flex itesm-center justify-end">
-                      <Radio
-                        color="indigo"
-                        name="address"
-                        label="Select Address"
-                        value={address}
-                        checked={selectedAddress === address}
-                        onChange={() => handleSelectAddress(address)}
-                      />
-                    </div>
-                  </CardBody>
-                </Card>
-              </div>
-            ))}
-        </CardBody> */}
+
           <CardFooter className="flex flex-col">
             <div className=" w-full flex-col ">
               <Typography variant="h6">Order will be delivered at:</Typography>
@@ -453,14 +409,7 @@ export default function Checkout() {
               </div>
             </div>
             <div className="flex justify-end items-center gap-3">
-              {/* <Button
-                variant="outlined"
-                onClick={() => {
-                  navigate("/productList");
-                }}
-              >
-                Back
-              </Button> */}
+
               <Button
                 disabled={!validAddress} // Disable the button if no address is selected
                 onClick={handleContinue}
@@ -542,115 +491,30 @@ export default function Checkout() {
                     />
                   </div>
 
-                    {/* <input
-                      type="text"
-                      className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-5"
-                      placeholder="Enter Pincode"
-                      value={addressData.pincode}
-                      onChange={(event) => {
-                        const selectedPincode = event.target.value;
-                        setAddressData({
-                          ...addressData,
-                          pincode: selectedPincode,
-                          city: pincodeData[selectedPincode]
-                            ? pincodeData[selectedPincode][0]
-                            : "", // If pincode exists in pincodeData, set city
-                          state: pincodeData[selectedPincode]
-                            ? pincodeData[selectedPincode][1]
-                            : "", // If pincode exists in pincodeData, set state
-                        });
-                      }}
-                    /> */}
-                    {/* <input
-                      type="text"
-                      className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-5"
-                      placeholder="Enter Pincode"
-                      value={addressData.pincode}
-                      onChange={handlePincodeChange}
-                    /> */}
-                    {/* <Select
-                      className="w-full mb-5"
-                      label="Select Pincode"
-                      value={addressData.pincode}
-                      onChange={(selectedPincode) => {
-                        setAddressData({
-                          ...addressData,
-                          pincode: selectedPincode,
-                          city: pincodeData[selectedPincode][0], // Set city based on selected pincode
-                          state: pincodeData[selectedPincode][1], // Set state based on selected pincode
-                        });
-                      }}
-                    >
-                      {Object.keys(pincodeData).map((pincode) => (
-                        <Option key={pincode} value={pincode}>
-                          {pincode}
-                        </Option>
-                      ))}
-                    </Select> */}
-                    <input
-                      className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-5"
-                      placeholder="City"
-                      type="text"
-                      value={addressData.city}
-                      disabled
-                      onChange={(e) =>
-                        setAddressData({ ...addressData, city: e.target.value })
-                      }
-                    />
-                    {/* <input
-                      className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mb-1"
-                      placeholder="Pincode"
-                      type="text"
-                      value={addressData.pincode}
-                      onChange={(e) =>
-                        setAddressData({
-                          ...addressData,
-                          pincode: e.target.value,
-                        })
-                      }
-                    /> */}
-                    {/* <input
-                      className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded"
-                      placeholder="Landmark"
-                      type="text"
-                      value={addressData.landmark}
-                      onChange={(e) =>
-                        setAddressData({
-                          ...addressData,
-                          landmark: e.target.value,
-                        })
-                      }
-                    /> */}
+                  <input
+                    className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-5"
+                    placeholder="City"
+                    type="text"
+                    value={addressData.city}
+                    disabled
+                    onChange={(e) =>
+                      setAddressData({ ...addressData, city: e.target.value })
+                    }
+                  />
 
-                    {/* <Select
-                  className="w-full"
-                  label="Select State"
-                  value={addressData.state}
-                  onChange={handleChange}
-                >
-                  {stateData.length > 0 ? (
-                    stateData.map((state, index) => (
-                      <Option key={index} value={state.value}>
-                        {state.displayValue}
-                      </Option>
-                    ))
-                  ) : (
-                    <Option disabled>Loading...</Option>
-                  )}
-                </Select> */}
-                    <input
-                      className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-5"
-                      placeholder="State"
-                      type="text"
-                      value={addressData.state}
-                      disabled
-                      onChange={(e) =>
-                        setAddressData({
-                          ...addressData,
-                          state: e.target.value,
-                        })
-                      }
-                    />
+                  <input
+                    className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-5"
+                    placeholder="State"
+                    type="text"
+                    value={addressData.state}
+                    disabled
+                    onChange={(e) =>
+                      setAddressData({
+                        ...addressData,
+                        state: e.target.value,
+                      })
+                    }
+                  />
 
                   <textarea
                     className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-5"
@@ -681,12 +545,19 @@ export default function Checkout() {
                 </div>
               </CardFooter>
             </Card>
-            
+
           </Dialog>
           <div className="fixed bottom-4 right-4 transition ease-in-out delay-300 -translate-y-1 scale-110 duration-700 z-[61000]">
             {toastMessage && <Toast message={toastMessage} />}
           </div>
         </div>
+      </div>
+
+      <div className="inline-block">
+        <Link to={"/productList"} className="flex items-center bg-black w-auto py-4 px-8 text-white gap-2 justify-center">
+          <ChevronLeftIcon className="h-4 w-4 " />
+          <Typography>Back</Typography>
+        </Link>
       </div>
     </div>
   );

@@ -57,6 +57,7 @@ export default function Orders() {
   const [selectedTab, setSelectedTab] = useState("all");
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(30);
+  const [activeTab, setActiveTab] = useState("productdetails");
 
   const handleTabChange = (value) => {
     setSelectedTab(value);
@@ -155,6 +156,11 @@ export default function Orders() {
     }
   };
 
+
+  const handleTabClick = (value) => {
+    setActiveTab(value);
+  };
+
   const OrderLoadingSkeleton = () => {
     return (
       <div className="w-full p-2 bg-gray-100 rounded-none  overflow-auto mb-4 lg:hover:-translate-y-2 duration-300 hover:bg-gray-300 animate-pulse">
@@ -172,30 +178,35 @@ export default function Orders() {
   };
 
   return (
-    <div className="p-5">
+    <div className="relative">
+
       <Topbar progress={progress} />
-      <div>
-        <Link to={"/account"} className="flex items-center">
-          <ChevronLeftIcon className="h-5 w-5 " />
-          <Typography>Account</Typography>
-        </Link>
-        <p className="text-2xl text-center text-slate-400 mb-5">My Orders</p>
+
+
+
+      <div className="relative mb-2">
+        <div className="bg-black h-[200px] flex items-center justify-center">
+          <Typography
+            color="white"
+            className="absolute text-center text-white opacity-100 Capitalize text-[36px]"
+          >
+            My Orders
+          </Typography>
+        </div>
       </div>
-      {/* <div className="hidden lg:flex mb-5">
-        <Typography variant="h3">
-          <p>My Orders</p>
-        </Typography>
-      </div> */}
-      <div className="flex flex-col items-center justify-between gap-4 md:flex-row mb-10 p-2">
-        <Tabs value="all" className="w-full md:w-max">
+
+
+      <div className="flex flex-col items-center justify-between gap-4 md:flex-row py-8 px-8">
+        <Tabs value={activeTab} className="w-full md:w-max" >
           <TabsHeader>
             {TABS.map(({ label, value }) => (
               <Tab
                 key={value}
                 value={value}
                 onClick={() => handleTabChange(value)}
+                className={`bg-white h-8 px-8 shadow-none ${activeTab === value ? "active-op" : ""}`}
               >
-                &nbsp;&nbsp;{label}&nbsp;&nbsp;
+               {label}
               </Tab>
             ))}
           </TabsHeader>
@@ -235,7 +246,7 @@ export default function Orders() {
           ))}
         </div>
       ) : (
-        <div className="flex flex-wrap gap-2 lg:gap-6 items-center justify-center w-88  ">
+        <div className="flex flex-wrap gap-2 lg:gap-6 items-center justify-center w-88 py-8 px-8">
           {filteredRows.map((item, index) => (
             <Card
               ref={addtoRefs}
@@ -316,6 +327,12 @@ export default function Orders() {
           ))}
         </div>
       )}
+      <div className="inline-block">
+        <Link to={"/account"} className="flex items-center bg-black w-auto py-4 px-8 text-white gap-2 justify-center">
+          <ChevronLeftIcon className="h-4 w-4 " />
+          <Typography>Account</Typography>
+        </Link>
+      </div>
     </div>
   );
 }

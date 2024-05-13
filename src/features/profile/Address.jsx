@@ -271,28 +271,28 @@ export default function Address() {
   }, [toastMessage]);
 
   return (
-    <div className="overflow-auto p-2 h-lvh">
+    <div className="relative">
       <Topbar progress={progress} />
 
-      <div className="mb-5">
-        <Link to={"/account"} className="flex items-center">
-          <ChevronLeftIcon className="h-5 w-5 " />
-          <Typography>Account</Typography>
-        </Link>
-        <p className="text-2xl text-center text-slate-400 mb-5">
-          Shipping Addresses
-        </p>
+      
+      <div className="relative mb-2">
+        <div className="bg-black h-[200px] flex items-center justify-center">
+          <Typography
+            color="white"
+            className="absolute text-center text-white opacity-100 Capitalize text-[36px]"
+          >
+             Shipping Addresses
+          </Typography>
+        </div>
       </div>
-      {!addressData && (
-        <p className="text-2xl text-center  mb-5">Shipping Addresses</p>
-      )}
+
       {/* Existing addresses */}
       <Card
         color="transparent"
         shadow={false}
-        className="w-full p-2  overflow-auto rounded-none flex items-center justify-center "
+        className="w-full py-12  overflow-auto rounded-none flex items-center justify-center "
       >
-        <CardBody className="mb-6 p-0 flex gap-2 flex-wrap ">
+        <CardBody className="p-0 flex gap-2 flex-wrap ">
           {""}
           {getAddressData &&
             getAddressData.address &&
@@ -433,51 +433,6 @@ export default function Address() {
                     />
                   </div>
 
-                    {/* <input
-                      type="text"
-                      className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-5"
-                      placeholder="Enter Pincode"
-                      value={addressData.pincode}
-                      onChange={(event) => {
-                        const selectedPincode = event.target.value;
-                        setAddressData({
-                          ...addressData,
-                          pincode: selectedPincode,
-                          city: pincodeData[selectedPincode]
-                            ? pincodeData[selectedPincode][0]
-                            : "", // If pincode exists in pincodeData, set city
-                          state: pincodeData[selectedPincode]
-                            ? pincodeData[selectedPincode][1]
-                            : "", // If pincode exists in pincodeData, set state
-                        });
-                      }}
-                    /> */}
-                    {/* <input
-                      type="text"
-                      className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-5"
-                      placeholder="Enter Pincode"
-                      value={addressData.pincode}
-                      onChange={handlePincodeChange}
-                    /> */}
-                    {/* <Select
-                      className="w-full mb-5"
-                      label="Select Pincode"
-                      value={addressData.pincode}
-                      onChange={(selectedPincode) => {
-                        setAddressData({
-                          ...addressData,
-                          pincode: selectedPincode,
-                          city: pincodeData[selectedPincode][0], // Set city based on selected pincode
-                          state: pincodeData[selectedPincode][1], // Set state based on selected pincode
-                        });
-                      }}
-                    >
-                      {Object.keys(pincodeData).map((pincode) => (
-                        <Option key={pincode} value={pincode}>
-                          {pincode}
-                        </Option>
-                      ))}
-                    </Select> */}
                     <input
                       className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-5"
                       placeholder="City"
@@ -488,47 +443,7 @@ export default function Address() {
                         setAddressData({ ...addressData, city: e.target.value })
                       }
                     />
-                    {/* <input
-                      className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mb-1"
-                      placeholder="Pincode"
-                      type="text"
-                      value={addressData.pincode}
-                      onChange={(e) =>
-                        setAddressData({
-                          ...addressData,
-                          pincode: e.target.value,
-                        })
-                      }
-                    /> */}
-                    {/* <input
-                      className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded"
-                      placeholder="Landmark"
-                      type="text"
-                      value={addressData.landmark}
-                      onChange={(e) =>
-                        setAddressData({
-                          ...addressData,
-                          landmark: e.target.value,
-                        })
-                      }
-                    /> */}
-
-                    {/* <Select
-                  className="w-full"
-                  label="Select State"
-                  value={addressData.state}
-                  onChange={handleChange}
-                >
-                  {stateData.length > 0 ? (
-                    stateData.map((state, index) => (
-                      <Option key={index} value={state.value}>
-                        {state.displayValue}
-                      </Option>
-                    ))
-                  ) : (
-                    <Option disabled>Loading...</Option>
-                  )}
-                </Select> */}
+                  
                     <input
                       className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-5"
                       placeholder="State"
@@ -578,6 +493,14 @@ export default function Address() {
             {toastMessage && <Toast message={toastMessage} />}
           </div>
         </div>
+      </div>
+
+
+      <div className="inline-block">
+        <Link to={"/account"} className="flex items-center bg-black w-auto py-4 px-8 text-white gap-2 justify-center">
+          <ChevronLeftIcon className="h-4 w-4 " />
+          <Typography>Account</Typography>
+        </Link>
       </div>
     </div>
   );

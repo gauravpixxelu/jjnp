@@ -162,21 +162,26 @@ export default function Wishlist() {
   };
 
   return (
-    <div className="p-2">
+    <div className="relative">
       <Topbar progress={progress} />
 
-      <div>
-        <Link to={"/account"} className="flex items-center">
-          <ChevronLeftIcon className="h-5 w-5 " />
-          <Typography>Account</Typography>
-        </Link>
-        <p className="text-2xl text-center text-slate-400 mb-5">My Wishlist</p>
+      
+      <div className="relative mb-2">
+        <div className="bg-black h-[200px] flex items-center justify-center">
+          <Typography
+            color="white"
+            className="absolute text-center text-white opacity-100 Capitalize text-[36px]"
+          >
+             Shipping Addresses
+          </Typography>
+        </div>
       </div>
+
       {wishlistData.length === 0 && (
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center py-8 px-8">
           <Typography>Your Wishlist is Empty</Typography>
           <Link to="/productList">
-            <span className="flex gap-2">
+            <span className="flex gap-2 font-bold">
               GO TO SHOP <BuildingStorefrontIcon className="h-5 w-5" />
             </span>
           </Link>
@@ -184,23 +189,23 @@ export default function Wishlist() {
       )}
       {loading ? (
         <>
-          <p>Getiing Your Wishlist</p>
+          <p>Getting Your Wishlist</p>
         </>
       ) : (
-        <div className="p-1 mt-5 flex flex-wrap  items-center justify-center  w-full">
+        <div className="py-8 px-8 flex flex-wrap  items-center justify-center  w-full">
           {wishlistData.map((product, index) => (
             <div
               ref={addtoRefs}
               key={index}
               className="flex flex-col items-center justify-center rounded-lg cursor-pointer bg-white "
             >
-              <div className="lg:w-333 lg:h-416 w-206 h-251">
+              <div className="relative">
                 <img
                   src={product.productImages[0]}
                   alt={product.productName}
-                  className="h-auto w-full  aspect-square object-cover object-center"
+                  className="h-auto w-full object-cover object-center"
                 />
-                <div>
+                <div className="mt-4">
                   <h2>{product.productName}</h2>
                   {/* <p className="">{product.productDescription}</p> */}
                   <p className="flex flex-wrap gap-3">
@@ -213,20 +218,17 @@ export default function Wishlist() {
                         currency: "INR",
                       })}
                     </span>
-                    <span>{product.productSlug}</span>
                   </p>
                 </div>
                 <div className="flex gap-1 items-center mt-2">
                   <Button
-                    variant="text"
-                    className="w-full"
+                    className="mt-4 inline-block bg-white border-black border text-black rounded-none font-normal px-12 py-4 uppercase text-[12px]"
                     onClick={() => handlRemoveFromWishlist(product.productSlug)}
                   >
                     Remove
                   </Button>
                   <Button
-                    // variant=""
-                    className="w-full"
+                    className="mt-4 inline-block bg-black text-white border-black border rounded-none font-normal px-12 py-4 uppercase text-[12px]"
                     onClick={() => handleProductClick(product)}
                   >
                     Buy
@@ -239,6 +241,15 @@ export default function Wishlist() {
       )}
       <div className="fixed bottom-4 right-4 transition ease-in-out delay-300 -translate-y-1 scale-110 duration-700 z-[61000]">
         {toastMessage && <Toast message={toastMessage} />}
+      </div>
+
+
+
+      <div className="inline-block">
+        <Link to={"/account"} className="flex items-center bg-black w-auto py-4 px-8 text-white gap-2 justify-center">
+          <ChevronLeftIcon className="h-4 w-4 " />
+          <Typography>Account</Typography>
+        </Link>
       </div>
     </div>
   );

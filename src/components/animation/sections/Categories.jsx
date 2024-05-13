@@ -5,7 +5,7 @@ import './Styles.css';
 const categories = [
     {
         id: 1,
-        image: '/category/category1.png',
+        image: '/category/category1.jpg',
         link: '/category1',
     },
     {
@@ -32,9 +32,9 @@ const Categories = () => {
                 {categories.map((category, index) => (
                     <div key={index} className="relative">
                         <img className="w-full" src={category.image} alt="category" />
-                        <div className="absolute bottom-20 text-center w-full">
+                        <div className="absolute bottom-8 text-center w-full lg:bottom-20">
                             {/* <h3 className="text-white text-[28px] font-bold">{category.title}</h3> */}
-                            <Link className="mt-4 inline-block bg-white text-black font-normal px-8 py-4 uppercase text-[14px]" to={category.link}>Shop Now</Link>
+                            <Link className="mt-4 inline-block bg-white text-black font-normal px-8 py-2 uppercase text-[14px] lg:px-8 lg:py-4 lg:text-[14px]" to={category.link}>Shop Now</Link>
                         </div>
                     </div>
                 ))}
