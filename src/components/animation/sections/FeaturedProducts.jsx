@@ -76,7 +76,7 @@ const FeaturedProducts = () => {
               </div>
               <div className="mt-4">
                 <p className=" font-normal text-black text-[18px]">{product.title}</p>
-                <p className=" mt-1 font-normal text-gray-700 text-[14px]">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'INR' }).format(product.originalPrice)}</p>
+                <p className=" mt-1 font-normal text-gray-700 text-[14px] price">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'INR' }).format(product.originalPrice)}</p>
               </div>
             </div>
           </div>

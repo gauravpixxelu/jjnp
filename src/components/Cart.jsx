@@ -188,7 +188,7 @@ export default function Cart({ handleDrawer, drawerOpen }) {
           open={drawerOpen}
           onClose={handleDrawer}
           placement="right"
-          className="p-4 overflow-auto"
+          className="p-4 overflow-auto drawer-gd"
         >
           <div className="absolute top-0 right-0">
             <IconButton variant="text" color="blue-gray" onClick={handleDrawer}>
@@ -210,7 +210,7 @@ export default function Cart({ handleDrawer, drawerOpen }) {
           </div>
           <div>
             <div className="flex flex-col ">
-              <Typography variant="h4" className="flex flex-col gap-2">
+              <Typography variant="h4" className="text-center">
                 Shopping Bag{" "}
               </Typography>
               {cartItems.length > 0 && (
@@ -220,7 +220,7 @@ export default function Cart({ handleDrawer, drawerOpen }) {
               )}
             </div>
             {cartItems.length === 0 ? (
-              <div className="flex items-center justify-center flex-col gap-10">
+              <div className="flex items-center justify-center flex-col gap-10 mt-8">
                 <div>
                   <img
                     src="/emptyCart.png"
@@ -232,7 +232,7 @@ export default function Cart({ handleDrawer, drawerOpen }) {
                   </Typography>
                 </div>
                 <div className="">
-                  <Button variant="text" onClick={() => handleGoToShop()}>
+                  <Button className="mt-4 inline-block bg-black text-white rounded-none font-normal px-12 py-4 uppercase text-[12px]" onClick={() => handleGoToShop()}>
                     Go to Shop
                   </Button>
                 </div>

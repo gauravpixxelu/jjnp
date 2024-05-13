@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
+/* 
 @font-face {
   font-family: 'Axiforma';
   src: url('Axiforma-Black.woff') format('woff');
@@ -56,7 +56,9 @@
   src: url('Axiforma-Thin.woff') format('woff');
   font-weight: 100;
   font-style: normal;
-}
+} */
+
+
 .slick-slide div {
   outline: 0;
 }
@@ -79,7 +81,9 @@
   right: 30px;
 }
 * {
-  font-family: 'Axiforma' !important;
+  font-family: "DM Sans", sans-serif !important;  
+}
+body {
   overflow-x: hidden;
 }
 
@@ -91,11 +95,15 @@
   top: 0;
 }
 
-
+.price {
+  font-family: "Ubuntu Sans", sans-serif !important;  
+}
 .bg-FBFBFB {
   background: #FBFBFB;
 }
-
+ul[role="tablist"] li[role="tab"].active-op div {
+  color: #fff;
+}
 
 ul[role="tablist"] {
   padding: 0;
@@ -110,9 +118,12 @@ ul[role="tablist"] li[role="tab"] {
 ul[role="tablist"] li[role="tab"] .absolute {
   border-radius: 0;
   box-shadow: 0 0 0 0 #fff;
-  background: #000;
+  background: #000;  
+  transform: none !important;
 }
-
+.sticky {
+  z-index: 9999;
+}
 ul[role="tablist"] li[role="tab"]:first-child {
   border-left: 1px solid #000;
 }

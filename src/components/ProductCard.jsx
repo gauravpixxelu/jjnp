@@ -114,7 +114,7 @@ export default function ProductCard({
                 <p className=" font-normal text-black text-[18px]">{product.productName}</p>
 
                 <div className="flex flex-wrap items-start justify-start bottom-0">
-                  <p className=" mt-1 font-normal text-gray-700 text-[14px]">
+                  <p className=" mt-1 font-normal text-gray-700 text-[14px] price">
                     {product.discountedPrice > 0 ? (
                       <span className="text-md  text-slate-900 mr-2">
                         {"₹" +

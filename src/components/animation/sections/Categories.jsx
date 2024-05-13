@@ -14,14 +14,14 @@ const categories = [
         link: '/category2',
     },
     {
-        id: 3,        
-        image: '/category/category3.png',
-        link: '/category3',
+        id: 3,
+        image: '/category/category4.png',
+        link: '/category4',
     },
     {
         id: 4,
-        image: '/category/category4.png',
-        link: '/category4',
+        image: '/category/category3.png',
+        link: '/category3',
     }
 ];
 

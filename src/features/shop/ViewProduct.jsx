@@ -76,6 +76,7 @@ export default function ViewProduct(props) {
   const [cartOpen, setCartOpen] = useState(false);
   const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
   const [wishlist, setWishlist] = useState([]);
+  const [activeTab, setActiveTab] = useState("productdetails");
 
   const splideOption = {
     type: "loop",
@@ -368,7 +369,9 @@ export default function ViewProduct(props) {
     },
   ];
 
-  const defaultActiveTab = data[0].value;
+  const handleTabClick = (value) => {
+    setActiveTab(value);
+  };
 
   var settings = {
     dots: false,
@@ -411,7 +414,7 @@ export default function ViewProduct(props) {
         </Slider>
         <div className="absolute inset-x-0 inset-y-0 hidden flex-wrap items-center justify-center lg:flex  ">
           <div className="z-50 w-[250px] h-[150px] flex items-center justify-center flex-wrap bg-white shadow-md">
-            <h3 className="text-black text-center text-[24px] font-bold w-full">{product.title} <span className="mt-0 lg:mt-1 font-normal block text-gray-700 text-[18px] w-full">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'INR' }).format(product.originalPrice)}</span>
+            <h3 className="text-black text-center text-[24px] font-bold w-full">{product.title} <span className="mt-0 lg:mt-1 font-normal block text-gray-700 text-[18px] w-full price">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'INR' }).format(product.originalPrice)}</span>
             </h3>
           </div>
         </div>
@@ -422,7 +425,7 @@ export default function ViewProduct(props) {
         <div className="flex flex-wrap lg:flex-nowrap gap-4">
           <div className="w-full">
             <h3 className="text-black text-[16px] font-bold lg:text-[20px]">{product.title}</h3>
-            <p className="mt-0 lg:mt-1 font-normal text-gray-700 text-[16px]">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'INR' }).format(product.originalPrice)}</p>
+            <p className="mt-0 lg:mt-1 font-normal text-gray-700 text-[16px] price">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'INR' }).format(product.originalPrice)}</p>
           </div>
 
           <div className="w-full">
@@ -507,10 +510,10 @@ export default function ViewProduct(props) {
               </Button>
               {!isProductInWishlist() ? (
                 <Button
-                  className="flex items-center justify-center w-14 h-14 rounded-none shadow-none text-[14px] font-normal p-1"
+                  className="flex items-center justify-center w-14 h-14 rounded-none p-0 bg-transparent shadow-none hover:shadow-none"
                   onClick={handlAddToWishlist}
                 >
-                  <HeartIcon className="h-8 w-8" />
+                  <HeartIcon className="h-8 w-8 stroke-black stroke-1	" />
                 </Button>
               ) : (
                 <Button
@@ -534,10 +537,15 @@ export default function ViewProduct(props) {
       <section className="bg-gray-100 ">
         <div className="flex flex-wrap lg:flex-nowrap">
           <div className="w-full py-4 px-4 lg:py-12 lg:px-8">
-            <Tabs value="html" className="shadow-none">
-              <TabsHeader className="shadow-none">
+            <Tabs value={activeTab}>
+              <TabsHeader>
                 {data.map(({ label, value }) => (
-                  <Tab key={value} value={value} className="bg-white h-16 shadow-none">
+                  <Tab
+                    key={value}
+                    value={value}
+                    onClick={() => handleTabClick(value)}
+                    className={`bg-white h-16 shadow-none ${activeTab === value ? "active-op" : ""}`}
+                  >
                     {label}
                   </Tab>
                 ))}
