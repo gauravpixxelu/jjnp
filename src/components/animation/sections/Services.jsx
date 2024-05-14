@@ -16,7 +16,7 @@ const services = [
         image: '/services/service1.jpg',
         title: 'Packaging',
         text: 'Choose our online exclusive tote or add a gift message at checkout to enjoy the boutique shopping bag.',
-        button: 'Explore Gucci’s Packaging',
+        button: 'Explore JJNP’s Packaging',
         link: '/category2',
     },
     {

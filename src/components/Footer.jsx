@@ -11,7 +11,7 @@ const LINKS = [
   },
   {
     title: "JJNP’S SERVICES",
-    items: ["Discover Our Services", "Book an Appointment", "Collect In Store"],
+    items: ["Discover Our Services", "Packaging", "Collect In Store"],
   }
 ];
 
