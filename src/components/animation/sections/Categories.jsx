@@ -5,23 +5,23 @@ import './Styles.css';
 const categories = [
     {
         id: 1,
-        image: '/category/category1.jpg',
+        image: '/category/category1.png',
         link: '/category1',
     },
     {
         id: 2,
-        image: '/category/category2.png',
+        image: '/category/category2.jpg',
         link: '/category2',
     },
     {
         id: 3,
-        image: '/category/category4.png',
+        image: '/category/category3.png',
         link: '/category4',
     },
     {
         id: 4,
-        image: '/category/category3.png',
-        link: '/category3',
+        image: '/category/category4.png',
+        link: '/category4',
     }
 ];
 

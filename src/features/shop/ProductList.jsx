@@ -194,13 +194,6 @@ export default function ProductList() {
     }
   };
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-
-  //   }, 1000); // 1 second delay
-  // }, []);
-  // Loading Skeleton component
-  // LoadingSkeleton component
   const LoadingSkeleton = () => {
     return (
       <div className="flex flex-wrap lg:flex-row">
