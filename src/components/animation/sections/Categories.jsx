@@ -6,22 +6,22 @@ const categories = [
     {
         id: 1,
         image: '/category/category1.png',
-        link: '/category1',
+        link: '/productList',
     },
     {
         id: 2,
-        image: '/category/category2.jpg',
-        link: '/category2',
+        image: '/category/category2.png',
+        link: '/productList',
     },
     {
         id: 3,
         image: '/category/category3.png',
-        link: '/category4',
+        link: '/productList',
     },
     {
         id: 4,
         image: '/category/category4.png',
-        link: '/category4',
+        link: '/productList',
     }
 ];
 

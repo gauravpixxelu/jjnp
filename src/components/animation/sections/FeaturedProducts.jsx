@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Sample from "../../../assets/sample.mp4";
+import Video1 from "../../../assets/video1.mp4";
+import Video2 from "../../../assets/video2.mp4";
 
 const FeaturedProducts = () => {
   const [productsData, setProductsData] = useState([]);
@@ -57,13 +58,15 @@ const FeaturedProducts = () => {
 
   return (
     <>
-      <section className="mx-auto mt-6 mb-6 lg:mt-12 lg:mb-12">
-        <h2 className="text-center text-2xl font-bold mb-4 lg:mb-8 uppercase tracking-wide">
-          Featured
-        </h2>
-        <video className="bannervideo" autoPlay muted loop>
-        <source src={Sample} type="video/mp4" />
-      </video>
+      <section className="mx-auto mt-6 mb-6 my-8 lg:mt-12 lg:mb-12">
+        <div className="grid grid-cols-1 mx-4 gap-4 md:grid-cols-2 lg:grid-cols-2 lg:gap-6 lg:mx-8">
+          <video className="videogd" autoPlay muted loop >
+            <source src={Video1} type="video/mp4" />
+          </video>
+          <video className="videogd" autoPlay muted loop>
+            <source src={Video2} type="video/mp4" />
+          </video>
+        </div>
       </section>
 
 
