@@ -407,7 +407,7 @@ export default function ViewProduct(props) {
 
       <div className="relative">
         <Slider {...settings}>
-          <div><img src="../product/product1.jpg" className="w-full" alt="" /></div>
+        <div><img src="../product/product1.jpg" className="w-full" alt="" /></div>
           <div><img src="../product/product2.jpg" className="w-full" alt="" /></div>
           <div><img src="../product/product1.jpg" className="w-full" alt="" /></div>
           <div><img src="../product/product2.jpg" className="w-full" alt="" /></div>

@@ -102,7 +102,7 @@ export default function ProductCard({
               <div className="cursor-pointer bg-FBFBFB">
                 <img
                   key={index}
-                  className="relative w-full md:h-[350px] lg:h-[350px] xl:h-[450px] object-contain"
+                  className="relative w-full md:h-[350px] lg:h-[350px] xl:h-[450px] object-cover"
                   src={product.productImages[0]}
                   alt={`product image ${index}`}
                   loading="lazy"

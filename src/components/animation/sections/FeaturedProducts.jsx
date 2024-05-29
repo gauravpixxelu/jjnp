@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Sample from "../../../assets/sample.mp4";
 
 const FeaturedProducts = () => {
   const [productsData, setProductsData] = useState([]);
@@ -55,34 +56,48 @@ const FeaturedProducts = () => {
   };
 
   return (
-    <section className="mx-auto mt-6 mb-6 lg:mt-12 lg:mb-12">
-      <h2 className="text-center text-4xl font-normal mb-4 lg:mb-8">
-        Featured
-      </h2>
-      <div className="grid grid-cols-1 mx-4 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-6 lg:mx-8">
-        {productsData.map((product, index) => (
-          <div
-            key={index}
-            className="flex justify-center cursor-pointer"
-            onClick={() => handleProductClick(product)}
-          >
-            <div className="w-full">
-              <div className="bg-FBFBFB">
-                <img
-                  className="relative w-full md:h-[350px] lg:h-[350px] xl:h-[450px] object-contain"
-                  src={product.productImages[0]}
-                  alt=""
-                />
-              </div>
-              <div className="mt-4">
-                <p className=" font-normal text-black text-[18px]">{product.title}</p>
-                <p className=" mt-1 font-normal text-gray-700 text-[14px] price">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'INR' }).format(product.originalPrice)}</p>
+    <>
+      <section className="mx-auto mt-6 mb-6 lg:mt-12 lg:mb-12">
+        <h2 className="text-center text-2xl font-bold mb-4 lg:mb-8 uppercase tracking-wide">
+          Featured
+        </h2>
+        <video className="bannervideo" autoPlay muted loop>
+        <source src={Sample} type="video/mp4" />
+      </video>
+      </section>
+
+
+
+
+      <section className="mx-auto mt-6 mb-6 lg:mt-12 lg:mb-12">
+        <h2 className="text-center text-2xl font-bold mb-4 lg:mb-8 uppercase tracking-wide">
+          Shop Now
+        </h2>
+        <div className="grid grid-cols-1 mx-4 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-6 lg:mx-8">
+          {productsData.map((product, index) => (
+            <div
+              key={index}
+              className="flex justify-center cursor-pointer"
+              onClick={() => handleProductClick(product)}
+            >
+              <div className="w-full">
+                <div className="bg-FBFBFB">
+                  <img
+                    className="relative w-full md:h-[350px] lg:h-[350px] xl:h-[450px] object-cover"
+                    src={product.productImages[0]}
+                    alt=""
+                  />
+                </div>
+                <div className="mt-4">
+                  <p className=" font-normal text-black text-[18px]">{product.title}</p>
+                  <p className=" mt-1 font-normal text-gray-700 text-[14px] price">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'INR' }).format(product.originalPrice)}</p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </section>
+          ))}
+        </div>
+      </section>
+    </>
   );
 };
 

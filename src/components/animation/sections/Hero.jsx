@@ -1,5 +1,5 @@
 import React from "react";
-import BannerVideo from "../../../assets/sample.mp4";
+import BannerVideo from "../../../assets/banner.mp4";
 import './Styles.css'
 
 const Hero = () => {
