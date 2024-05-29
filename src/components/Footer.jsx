@@ -3,11 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 const LINKS = [
   {
     title: "MAY WE HELP YOU?",
-    items: ["Product Care", "FAQ's", "Contact"],
+    items: ["Product Care", "Contact"],
   },
   {
     title: "THE COMPANY",
-    items: ["About Us", "Legal", "Return Policy"],
+    items: ["About Us",  "Return Policy"],
   },
   {
     title: "JJNP’S SERVICES",

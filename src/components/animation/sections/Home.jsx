@@ -10,7 +10,7 @@ function Home() {
       <Hero />
       <Categories />
       <FeaturedProducts />
-      <Services />
+      {/* <Services /> */}
     </div>
   );
 }
