@@ -58,21 +58,7 @@ const FeaturedProducts = () => {
 
   return (
     <>
-      <section className="mx-auto mt-6 mb-6 my-8 lg:mt-12 lg:mb-12">
-        <div className="grid grid-cols-1 mx-4 gap-4 md:grid-cols-2 lg:grid-cols-2 lg:gap-6 lg:mx-8">
-          <video className="videogd" autoPlay muted loop >
-            <source src={Video1} type="video/mp4" />
-          </video>
-          <video className="videogd" autoPlay muted loop>
-            <source src={Video2} type="video/mp4" />
-          </video>
-        </div>
-      </section>
-
-
-
-
-      <section className="mx-auto mt-6 mb-6 lg:mt-12 lg:mb-12">
+      <section className="mx-auto mt-6 mb-6 lg:mt-8 lg:mb-8">
         <h2 className="text-center text-2xl font-bold mb-4 lg:mb-8 uppercase tracking-wide">
           Shop Now
         </h2>
@@ -98,6 +84,17 @@ const FeaturedProducts = () => {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="mx-auto mt-6 mb-6 my-8 lg:mt-8 lg:mb-8">
+        <div className="grid grid-cols-1 mx-4 gap-4 md:grid-cols-2 lg:grid-cols-2 lg:gap-6 lg:mx-8">
+          <video className="videogd" autoPlay muted loop >
+            <source src={Video1} type="video/mp4" />
+          </video>
+          <video className="videogd" autoPlay muted loop>
+            <source src={Video2} type="video/mp4" />
+          </video>
         </div>
       </section>
     </>

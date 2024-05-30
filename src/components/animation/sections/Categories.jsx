@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import './Styles.css';
 
@@ -26,15 +26,46 @@ const categories = [
 ];
 
 const Categories = () => {
+    const categoryRefs = useRef([]);
+
+    useEffect(() => {
+        const options = {
+            threshold: 0.5,
+        };
+
+        const callback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('scale-to-100');
+                    observer.unobserve(entry.target);  // Stop observing after the animation
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(callback, options);
+        categoryRefs.current.forEach(ref => {
+            if (ref) observer.observe(ref);
+        });
+
+        return () => {
+            categoryRefs.current.forEach(ref => {
+                if (ref) observer.unobserve(ref);
+            });
+        };
+    }, []);
+
     return (
         <section className="relative lg:p-8 p-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-8 gap-4">
                 {categories.map((category, index) => (
-                    <div key={index} className="relative">
-                        <img className="w-full" src={category.image} alt="category" />
-                        <div className="absolute bottom-8 text-center w-full lg:bottom-20">
-                            {/* <h3 className="text-white text-[28px] font-bold">{category.title}</h3> */}
-                            <Link className="mt-4 inline-block bg-white text-black font-normal px-8 py-2 uppercase text-[14px] lg:px-8 lg:py-4 lg:text-[14px]" to={category.link}>Shop Now</Link>
+                    <div
+                        key={index}
+                        className="relative overflow-hidden category-item"
+                        ref={el => (categoryRefs.current[index] = el)}
+                    >
+                        <img className="w-full category-image" src={category.image} alt="category" />
+                        <div className="absolute bottom-8 text-center w-full lg:bottom-20 z-10">
+                            <Link className="custom-button" to={category.link}>Shop Now</Link>
                         </div>
                     </div>
                 ))}
