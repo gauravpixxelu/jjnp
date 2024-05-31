@@ -125,6 +125,10 @@ export default function Wishlist() {
     });
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   //animations
   useEffect(() => {
     // Clear existing ScrollTriggers

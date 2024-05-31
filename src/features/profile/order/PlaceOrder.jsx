@@ -173,6 +173,10 @@ export default function PlaceOrder() {
     getTotalPrice();
   }, [cartItems]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       {" "}

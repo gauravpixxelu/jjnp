@@ -270,6 +270,11 @@ export default function Address() {
     }
   }, [toastMessage]);
 
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="relative">
       <Topbar progress={progress} />

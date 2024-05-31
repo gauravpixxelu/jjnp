@@ -1,8 +1,11 @@
-// ProductCare.jsx
-
-import React from "react";
+import { useEffect } from "react";
 
 function ProductCare() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
 

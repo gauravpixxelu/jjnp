@@ -143,6 +143,10 @@ export default function ProfileInfo() {
     }
   }, [toastMessage]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="relative">
       <Topbar progress={progress} />

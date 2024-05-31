@@ -1,9 +1,10 @@
-import React from "react";
+import { useEffect } from "react";
 import {
   Accordion,
   AccordionHeader,
   AccordionBody,
 } from "@material-tailwind/react";
+
 
 
 function Icon({ id, open }) {
@@ -26,6 +27,10 @@ function FAQ() {
   const [open, setOpen] = React.useState(0);
 
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
 

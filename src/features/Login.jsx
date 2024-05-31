@@ -24,6 +24,11 @@ export default function Login() {
     userId: "",
   });
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 

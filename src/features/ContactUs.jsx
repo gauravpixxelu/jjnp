@@ -16,6 +16,10 @@ function ContactUs() {
   const [toastMessage, setToastMessage] = useState("");
   const [progress, setProgress] = useState(30);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [contactData, setContactData] = useState({
     name: "",
     email: "",

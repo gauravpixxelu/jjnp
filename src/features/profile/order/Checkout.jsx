@@ -267,6 +267,10 @@ export default function Checkout() {
       };
     }
   }, [toastMessage]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return ( 
     <div className="realtive">
       <Topbar progress={progress} />

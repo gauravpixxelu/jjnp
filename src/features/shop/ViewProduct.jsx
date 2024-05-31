@@ -373,6 +373,10 @@ export default function ViewProduct(props) {
     setActiveTab(value);
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   var settings = {
     dots: false,
     arrows: true,

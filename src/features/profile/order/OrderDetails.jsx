@@ -336,6 +336,10 @@ export default function OrderDetails() {
       };
     }
   }, [toastMessage]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="p-3">
       <div>

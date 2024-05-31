@@ -229,6 +229,10 @@ export default function Profile() {
     }
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="h-auto">
       <Topbar progress={progress} />

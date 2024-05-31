@@ -208,6 +208,10 @@ export default function ProductList() {
     );
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="">
       <Topbar progress={progress} />
