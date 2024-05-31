@@ -33,7 +33,7 @@ export default function TermsnPrivacy() {
 
   return (
     <>
-      <div className="relative bg-cover bg-center flex items-center justify-center min-h-[170px] lg:min-h-[400px]" style={{ backgroundImage: `url(./contact/contact-banner.jpg)` }}>
+      <div className="relative bg-cover bg-center flex items-center justify-center min-h-[170px] lg:min-h-[400px]" style={{ backgroundImage: `url(./contact/contact-banner.png)` }}>
           <div className="absolute inset-0 bg-black opacity-30"></div>
           <div className="relative z-10 text-white text-center">
             <h1 className="text-2xl lg:text-5xl font-bold">Terms & Privacy</h1>
