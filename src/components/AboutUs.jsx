@@ -21,15 +21,15 @@ function AboutUs() {
 
         <div className="flex justify-center flex-wrap gap-4 m-4 lg:m-8 lg:gap-8 lg:flex-nowrap">
           <div className="w-full">
-            <img className="w-full" src="./about/about1.jpg" alt="" />
+            <img className="w-full" src="./about/about1.png" alt="" />
             <p className="mt-4 text-gray-700">Welcome to our fashion website! We are passionate about bringing you the latest trends in fashion and ensuring you have the best shopping experience possible.</p>
           </div>
           <div className="w-full">
-          <img className="w-full" src="./about/about2.jpg" alt="" />
+          <img className="w-full" src="./about/about2.png" alt="" />
             <p className="mt-4 text-gray-700">Our mission is to provide high-quality clothing, excellent customer service, and a seamless online shopping experience.</p>
           </div>
           <div className="w-full">
-          <img className="w-full" src="./about/about3.jpg" alt="" />
+          <img className="w-full" src="./about/about3.png" alt="" />
             <p className="mt-4 text-gray-700">If you have any questions or feedback, please don't hesitate to contact us. We'd love to hear from you!</p>
           </div>
         </div>
