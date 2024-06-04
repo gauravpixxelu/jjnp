@@ -377,6 +377,8 @@ export default function ViewProduct(props) {
     window.scrollTo(0, 0);
   }, []);
 
+
+
   var settings = {
     dots: false,
     arrows: true,
@@ -411,10 +413,16 @@ export default function ViewProduct(props) {
 
       <div className="relative">
         <Slider {...settings}>
-        <div><img src="../product/product1.jpg" className="w-full" alt="" /></div>
-          <div><img src="../product/product2.jpg" className="w-full" alt="" /></div>
-          <div><img src="../product/product1.jpg" className="w-full" alt="" /></div>
-          <div><img src="../product/product2.jpg" className="w-full" alt="" /></div>
+          {product.productImages.map((imageUrl, index) => (
+            <div key={index}>
+              <img
+                src={imageUrl}
+                alt={`Product Image ${index + 1}`}
+                className="w-full"
+                onClick={() => setSelectedImage(imageUrl)}
+              />
+            </div>
+          ))}
         </Slider>
         <div className="absolute inset-x-0 inset-y-0 hidden flex-wrap items-center justify-center lg:flex  ">
           <div className="z-50 w-[250px] h-[150px] flex items-center justify-center flex-wrap bg-white shadow-md">
@@ -521,7 +529,7 @@ export default function ViewProduct(props) {
                 </Button>
               ) : (
                 <Button
-                className="flex items-center justify-center w-14 h-14 rounded-none p-0 bg-transparent shadow-none hover:shadow-none"
+                  className="flex items-center justify-center w-14 h-14 rounded-none p-0 bg-transparent shadow-none hover:shadow-none"
                   onClick={() => {
                     handleGoToWishList();
                   }}
