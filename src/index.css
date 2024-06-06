@@ -184,3 +184,10 @@ div[role="tabpanel"] {
   transform: scale(0.95);  /* Slightly shrink on hover */
   background:  rgba(150, 150, 150, 0.15);  /* Slightly more opaque background */
 }
+
+
+@media screen and (max-width:767px) {
+  .videogd {
+    height: auto;
+  }
+}

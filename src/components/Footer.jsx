@@ -8,10 +8,6 @@ const LINKS = [
   {
     title: "THE COMPANY",
     items: ["About Us",  "Return Policy"],
-  },
-  {
-    title: "JJNP’S SERVICES",
-    items: ["Discover Our Services", "Packaging", "Collect In Store"],
   }
 ];
 

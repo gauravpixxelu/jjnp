@@ -60,7 +60,7 @@ const FeaturedProducts = () => {
     <>
       <section className="mx-auto mt-6 mb-6 lg:mt-8 lg:mb-8">
         <h2 className="text-center text-2xl font-bold mb-4 lg:mb-8 uppercase tracking-wide">
-          Shop Now
+          Featured Products
         </h2>
         <div className="grid grid-cols-1 mx-4 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-6 lg:mx-8">
           {productsData.map((product, index) => (

@@ -92,7 +92,7 @@ export default function TermsnPrivacy() {
           <h2 className="text-center text-[24px] lg:text-[30px] mb-2 font-bold lg:mb-8">Frequently Asked Questions</h2>
           <Accordion open={open === 1} icon={<Icon id={1} open={open} />}>
           <AccordionHeader onClick={() => handleOpen(1)} className="text-[18px] lg:text-[20px]">What is the return window?</AccordionHeader>
-          <AccordionBody className="text-[14px] lg:text-[16px]">You have 30 days from the date of delivery to initiate a return.</AccordionBody>
+          <AccordionBody className="text-[14px] lg:text-[16px]">You have 5 to 7 business days from the date of delivery to initiate a return.</AccordionBody>
         </Accordion>
         <Accordion open={open === 2} icon={<Icon id={2} open={open} />}>
           <AccordionHeader onClick={() => handleOpen(2)} className="text-[18px] lg:text-[20px]">What condition must the item be in to be eligible for a return?</AccordionHeader>

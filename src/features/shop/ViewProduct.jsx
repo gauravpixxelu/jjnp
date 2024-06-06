@@ -350,7 +350,7 @@ export default function ViewProduct(props) {
     {
       label: "Product Details",
       value: "productdetails",
-      desc: `New hoodie`,
+      desc: product.description,
     },
     {
       label: "Materials",
