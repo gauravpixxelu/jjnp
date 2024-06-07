@@ -25,6 +25,7 @@ import ProductCare from "../components/ProductCare";
 import AboutUs from "../components/AboutUs";
 import TermsnPrivacy from "../components/TermsnPrivacy";
 import ReturnPolicy from "../components/ReturnPolicy";
+import OTPForm from "../features/OTPForm";
 
 
 function UserRoutes() {
@@ -56,6 +57,7 @@ function UserRoutes() {
   const AboutUsWithNavbar = withNavbar(AboutUs);
   const TermsnPrivacyWithNavbar = withNavbar(TermsnPrivacy);
   const ReturnPolicyWithNavbar = withNavbar(ReturnPolicy);
+  const OTPFormWithNavbar = withNavbar(OTPForm);
 
   //protected routes
   const ProtectedAccount = withAuth(ProfileWithNavbar);
@@ -71,11 +73,20 @@ function UserRoutes() {
   const ProtectedPlaceOrder = withAuth(PlaceOrderWithNavbar);
   return (
     <Routes>
+
       <Route
         path="/"
         element={<HomeWithNavbar />}
         onChange={(e) => handleRouteChange(e.pathname)}
       />
+
+      <Route
+        path="otp-form"
+        element={<OTPForm />}
+        onChange={(e) => handleRouteChange(e.pathname)}
+      />
+
+
       <Route
         path="/account"
         element={<ProtectedAccount />}
@@ -136,6 +147,7 @@ function UserRoutes() {
         element={<ContactUsWithNavbar />}
         onChange={(e) => handleRouteChange(e.pathname)}
       />
+
       <Route
         path="addresses"
         element={<ProtectedAddress />}

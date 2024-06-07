@@ -72,7 +72,7 @@ export default function Login() {
 
     try {
       const response = await axios.post(
-        `https://www.jjnps.com/api/auth/login`,
+        `https://jjnps.com/api/auth/login`,
         {
           email: formData.email,
           password: formData.password,
