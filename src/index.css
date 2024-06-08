@@ -185,6 +185,10 @@ div[role="tabpanel"] {
   background:  rgba(150, 150, 150, 0.15);  /* Slightly more opaque background */
 }
 
+.gd span svg {
+  display: none;
+}
+
 
 @media screen and (max-width:767px) {
   .videogd {

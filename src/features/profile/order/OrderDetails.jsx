@@ -341,44 +341,49 @@ export default function OrderDetails() {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div className="p-3">
-      <div>
-        <Link to={"/orders"} className="flex items-center">
-          <ChevronLeftIcon className="h-5 w-5 " />
-          <Typography>Orders</Typography>
-        </Link>
-        <p className="text-2xl text-center text-slate-400 mb-5">
-          Order Details
-        </p>
-        <div className="ml-auto p-2">
-          <p className=" text-sm cursor-pointer" onClick={handleOpen}>
+    <>
+
+      <div className="relative mb-2">
+        <div className="bg-black h-[200px] flex items-center justify-center">
+          <Typography
+            color="white"
+            className="absolute text-center text-white opacity-100 Capitalize text-[36px]"
+          >
+            Order Details
+          </Typography>
+
+        </div>
+        <div className="mt-8">
+          <p className="text-center cursor-pointer underline uppercase font-bold underline-offset-2" onClick={handleOpen}>
             Need help with something?
           </p>
         </div>
       </div>
-      <div className="p-2">
+
+
+
+      <div className="relative m-8">
         <Card
           color="transparent"
           shadow={false}
-          className="w-full p-2 border border-gray-500 rounded-none overflow-auto mb-4 "
+          className="w-full border border-gray-300 rounded-none overflow-auto mb-4 "
         >
-          <div className="border-b border-gray-400 mb-3 pb-2 lg:flex ">
+          <div className="border-b border-gray-300 mb-3 lg:flex items-center p-4 text-black font-bold">
             <p>Order ID - {order.orderId}</p>
             <p className="lg:ml-auto">Created At: {formattedCreateDateTime}</p>
           </div>
-          <div className="flex items-center justify-center mb-3">
+
+          <div className="flex items-center ">
             {order.products.map((item, index) => (
-              <CardBody key={index} className="p-0 w-96 ">
+              <CardBody key={index} className="w-full">
                 <div>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 items-center justify-between">
                     <div className="">
-                      <p>Product Summary</p>
+                      <p className="mb-4 inline-block text-xl">Product Summary</p>
                       <Typography variant="h4">
-                        <span className="text-justify text-black flex items-center gap-1">
+                        <span className="text-justify text-black flex items-center gap-1 font-bold">
                           <p className="text-lg">{item.title}</p>{" "}
-                          <p className="text-sm text-gray-600">
-                            x{item.quantity}
-                          </p>
+                          <p className="text-sm text-gray-600 font-normal">x{item.quantity}</p>
                         </span>
                       </Typography>
                       <Typography
@@ -403,66 +408,56 @@ export default function OrderDetails() {
                       <p className="text-xs w-fit">
                         <Chip variant="ghost" value={item.slug} />
                       </p>
+
+                      <div className="mt-2">
+                        <p className="text-sm flex items-center gap-2">
+                          <span className="text-black font-bold">
+                            {" "}
+                            Payment Status:{" "}
+                          </span>
+                          <span className="text-gray-700"> {order.status} </span>
+                          <span>
+                            <CheckBadgeIcon className="w-5 h-5 text-black" />
+                          </span>
+                        </p>
+                      </div>
                     </div>
 
-                    {order.orderImages.length > 0 && (
-                      <img
-                        key={index} // Assuming 'index' is defined elsewhere in your code
-                        src={order.orderImages[index].images[0]} // Accessing the 'index' element directly
-                        className="h-28 w-28 lg:h-48 lg:w-48 rounded-md ml-auto"
-                        alt={`Product ${order.name}`}
-                      />
-                    )}
+                    <div>
+                      {order.orderImages.length > 0 && (
+                        <img
+                          key={index} // Assuming 'index' is defined elsewhere in your code
+                          src={order.orderImages[index].images[0]} // Accessing the 'index' element directly
+                          className="h-28 w-28 lg:h-80 lg:w-80 rounded-md ml-auto"
+                          alt={`Product ${order.name}`}
+                        />
+                      )}
+                    </div>
+
+                    <div>
+                      Delivery Address
+                      <div className="flex w-full flex-col gap-0.5">
+                        <div className="flex items-center justify-between">
+                          <Typography variant="h5" color="blue-gray">
+                            {order.name}
+                          </Typography>
+                        </div>
+                        <Typography color="blue-gray">{order.phone}</Typography>
+                      </div>
+                      <div className="mb-4">
+                        <span>
+                          {order.city} , {order.state}, {order.address},{" "}
+                          {order.pincode}
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </CardBody>
             ))}
           </div>
-          <div className="w-full h-px bg-gray-400 "></div>
           <CardFooter className="w-full ">
-            <div className="flex lg:flwx-row flex-col items-center justify-between gap-6">
-              <div>
-                <p>Payment Summary</p>
-                <p className="text-lg">
-                  <span className="text-black font-bold"> Order Total: </span>
-                  <span className="text-gray-700 font-800">
-                    {order.amount.toLocaleString("en-IN", {
-                      style: "currency",
-                      currency: "INR",
-                    })}
-                  </span>
-                </p>
-                <p className="text-lg flex items-center gap-2 mb-3">
-                  <span className="text-black font-bold">
-                    {" "}
-                    Payment Status:{" "}
-                  </span>
-                  <span className="text-gray-700"> {order.status} </span>
-                  <span>
-                    <CheckBadgeIcon className="w-5 h-5 text-black" />
-                  </span>
-                </p>
-              </div>
-              <div>
-                Delivery Address
-                <div className="flex w-full flex-col gap-0.5">
-                  <div className="flex items-center justify-between">
-                    <Typography variant="h5" color="blue-gray">
-                      {order.name}
-                    </Typography>
-                  </div>
-                  <Typography color="blue-gray">{order.phone}</Typography>
-                </div>
-                <div className="mb-4">
-                  <span>
-                    {order.city} , {order.state}, {order.address},{" "}
-                    {order.pincode}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="w-full h-px bg-gray-400 "></div>
-            <div className="w-full px-2 lg:px-24 py-4 ">
+            <div className="w-full px-2 lg:px-8 ">
               {order.deliveryStatus === "Canceled" &&
                 order.deliveryStatus !== "Returned" && (
                   <div>
@@ -650,9 +645,9 @@ export default function OrderDetails() {
                       {returnReason && (
                         <div className="mt-2">
                           {returnReason === "Color change" ||
-                          returnReason === "Used product" ||
-                          returnReason === "Wrong product" ||
-                          returnReason === "Color is not like in the photos" ? (
+                            returnReason === "Used product" ||
+                            returnReason === "Wrong product" ||
+                            returnReason === "Color is not like in the photos" ? (
                             <div>
                               <label
                                 htmlFor="photoProof"
@@ -790,13 +785,13 @@ export default function OrderDetails() {
                 <Accordion open={accordianOpen === 1} className="w-full">
                   <AccordionHeader
                     onClick={() => handleAccordianOpen(1)}
-                    className="text-sm"
+                    className="text-sm inline-block w-[200px] text-center gd p-0 border-none"
                   >
-                    Cancel order?
+                    <p className="border border-black py-4 px-8">Cancel order?</p>
                   </AccordionHeader>
-                  <AccordionBody className="">
+                  <AccordionBody className="w-full">
                     <div className="flex-col">
-                      <p>Please select reason for cancel:</p>
+                      <p className="text-lg font-bold text-black">Please select reason for cancel:</p>
                       {/* Here's where you can map over radio buttons */}
                       {cancelReasons.map((reason, index) => (
                         <div key={index} className="flex items-center">
@@ -808,7 +803,7 @@ export default function OrderDetails() {
                             value={reason}
                             onChange={(e) => setCancelReason(e.target.value)}
                           />
-                          <label htmlFor={`reason${index}`} className="ml-1">
+                          <label htmlFor={`reason${index}`} className="ml-2 text-md text-black">
                             {reason}
                           </label>
                         </div>
@@ -819,7 +814,7 @@ export default function OrderDetails() {
                       {/* Show selected video */}
 
                       {cancelReason && (
-                        <div className="mt-2">
+                        <div className="mt-0">
                           <br />
                           {/* Ask for explanation */}
                           <div className="lg:w-1/4">
@@ -828,14 +823,13 @@ export default function OrderDetails() {
                               onChange={(e) =>
                                 setCancelExplanation(e.target.value)
                               }
-                              variant="outlined"
                               label="Explanation for the above concern"
-                              className="w-full "
+                              className="w-full rounded-none border border-black"
                               required
                             />
 
                             <Button
-                              className="w-full mt-2"
+                              className="w-full mt-0 border border-black rounded-none text-black"
                               variant="text"
                               onClick={() => handleCancelOrder()}
                               disabled={
@@ -853,11 +847,11 @@ export default function OrderDetails() {
               )}
           </CardFooter>
 
-          <div className="ml-auto">
+          <div className="">
             {/* <p className=" text-sm cursor-pointer" onClick={handleOpen}>
               Having trouble ?{" "}
             </p> */}
-            <p className=" text-xs">
+            <p className=" text-xs text-black pl-6 pb-6">
               Last Updated At: {formattedUpdateDateTime}
             </p>
           </div>
@@ -955,6 +949,13 @@ export default function OrderDetails() {
           </div>
         </div>
       </div>
-    </div>
+
+      <div className="inline-block">
+        <Link to={"/orders"} className="flex items-center bg-black w-auto py-4 px-8 text-white gap-2 justify-center">
+          <ChevronLeftIcon className="h-4 w-4 " />
+          <Typography>Orders</Typography>
+        </Link>
+      </div>
+    </>
   );
 }
