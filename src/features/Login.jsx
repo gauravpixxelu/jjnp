@@ -106,7 +106,7 @@ export default function Login() {
         setToastMessage(response.data.message);
 
         setTimeout(() => {
-          navigate("/");
+          navigate("/account");
         }, 1000);
       }
     } catch (error) {

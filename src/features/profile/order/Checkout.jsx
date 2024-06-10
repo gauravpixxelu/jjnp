@@ -313,6 +313,7 @@ export default function Checkout() {
                         color="black"
                         name="address"
                         label="Select Address"
+                        className="radio-gd"
                         value={address}
                         checked={selectedAddress === address} // Set to true if address matches selectedAddress or it's the 0th address
                         onChange={() => handleSelectAddress(address)}

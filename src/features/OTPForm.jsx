@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Loader from "../components/Loader";
 import axios from "axios";
 import { useAuth } from "../config/AuthContext";
@@ -16,10 +16,11 @@ const OTPForm = (props) => {
     digit5: "",
     digit6: "",
   });
-  const { setToken, accessToken } = useAuth();
+  const { setToken } = useAuth();
   const [loading, setLoading] = useState(false);
 
-  const handleEmailVerification = async () => {
+  const handleEmailVerification = async (e) => {
+    e.preventDefault();
     setLoading(true);
 
     try {
@@ -49,24 +50,25 @@ const OTPForm = (props) => {
           digit5: "",
           digit6: "",
         });
-        setToken(response.data.authToken);
-        // localStorage.setItem("accessToken", accessToken);
         setLoading(false);
         setTimeout(() => {
-          navigate("/");
+          navigate("/login");
         }, 1000);
+      } else {
+        setError(response.data.message || "An error occurred during verification");
+        setLoading(false);
       }
     } catch (error) {
       setError(
-        error.response?.data?.message || "An error occurred during login"
+        error.response?.data?.message || "An error occurred during verification"
       );
       setLoading(false);
     }
   };
 
   const handleResendOTP = async (e) => {
-    setLoading(true);
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/auth/resendotp`,
@@ -94,11 +96,11 @@ const OTPForm = (props) => {
         setError("");
       } else {
         setLoading(false);
-        setError("An error occured while sending OTP. Please try again.");
+        setError("An error occurred while sending OTP. Please try again.");
       }
     } catch (error) {
       setError(
-        error.response?.data?.message || "An error occurred during login"
+        error.response?.data?.message || "An error occurred during resend"
       );
       setLoading(false);
     }
@@ -107,41 +109,41 @@ const OTPForm = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  
+
   return (
-    <div className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-12">
-      <div className="relative bg-white px-6 pt-10 pb-9 shadow-xl mx-auto w-full max-w-lg rounded-2xl">
-        <div className="mx-auto flex w-full max-w-md flex-col space-y-16">
-          <div className="flex flex-col items-center justify-center text-center space-y-2">
-            <div className="font-semibold text-3xl">
+    <div className="relative flex flex-col min-h-screen justify-center overflow-hidden p-16">
+      <div className="relative bg-white p-12 mx-auto w-full max-w-lg rounded-2xl border border-black-600">
+        <div className="mx-auto flex w-full max-w-md flex-col">
+          <div className="flex flex-col items-center justify-center text-center">
+            <div className="font-bold text-3xl mb-2">
               <p>Email Verification</p>
             </div>
-            <div className="flex flex-row text-sm font-medium text-gray-400">
+            <div className="flex flex-row font-medium text-gray-400 text-md">
               <p>We have sent a code to your email {props.email}</p>
             </div>
           </div>
 
           <div>
-            <form action="" method="post">
-              <div className="flex flex-col space-y-16">
-                <div className="flex flex-row items-center justify-between mx-auto w-full max-w-xs">
+            <form onSubmit={handleEmailVerification}>
+              <div className="flex flex-col">
+                <div className="flex flex-row items-center justify-between mx-auto w-full gap-2 my-10">
                   {Array.from({ length: 6 }).map((_, index) => (
                     <div key={index} className="w-16 h-16">
                       <input
-                        ref={(el) => (inputRefs.current[index] = el)} // Store input element references in an array
-                        className="w-full h-full flex flex-col items-center justify-center text-center px-5  rounded-xl border border-gray-400  text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-blue-700"
+                        ref={(el) => (inputRefs.current[index] = el)}
+                        className="w-full h-full flex flex-col items-center justify-center text-center outline-none rounded-xl border border-gray-400 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-black-400"
                         type="text"
                         value={otp[`digit${index + 1}`]}
                         onChange={(e) => {
-                          setOTP({
-                            ...otp,
-                            [`digit${index + 1}`]: e.target.value,
-                          });
-                          if (
-                            e.target.value &&
-                            index < inputRefs.current.length - 1
-                          ) {
-                            inputRefs.current[index + 1].focus(); // Move focus to the next input
+                          const { value } = e.target;
+                          if (/^\d*$/.test(value)) {
+                            setOTP({
+                              ...otp,
+                              [`digit${index + 1}`]: value,
+                            });
+                            if (value && index < inputRefs.current.length - 1) {
+                              inputRefs.current[index + 1].focus();
+                            }
                           }
                         }}
                         maxLength={1}
@@ -154,26 +156,25 @@ const OTPForm = (props) => {
                   {error && <p className="text-red-500">{error}</p>}
                   <div>
                     <button
-                      onClick={handleEmailVerification}
+                      type="submit"
                       disabled={
                         loading || Object.values(otp).some((value) => !value)
                       }
-                      className="flex flex-row items-center justify-center text-center w-full border rounded-xl outline-none py-5 bg-blue-700 border-none text-white text-sm shadow-sm"
+                      className="flex flex-row items-center justify-center text-center w-full border rounded-md uppercase outline-none py-5 bg-black border-none text-white text-md shadow-sm "
                     >
                       {loading ? <Loader /> : "Verify Account"}
                     </button>
                   </div>
 
                   <div className="flex flex-row items-center justify-center text-center text-sm font-medium space-x-1 text-gray-500">
-                    <p>Didn&apos;t receive code?</p>{" "}
-                    <a
-                      className="flex flex-row items-center text-blue-600"
-                      href="#"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <p>Didn't receive code?</p>
+                    <button
+                      className="flex flex-row items-center text-red-600 uppercase underline underline-offset-2"
+                      onClick={handleResendOTP}
+                      disabled={loading}
                     >
-                      <button onClick={handleResendOTP}>Resend</button>
-                    </a>
+                      Resend
+                    </button>
                   </div>
                 </div>
               </div>

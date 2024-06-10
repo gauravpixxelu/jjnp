@@ -295,7 +295,7 @@ export default function Address() {
       <Card
         color="transparent"
         shadow={false}
-        className="w-full py-12  overflow-auto rounded-none flex items-center justify-center "
+        className="w-full lg:py-12 overflow-auto rounded-none flex items-center justify-center m-4 py-0"
       >
         <CardBody className="p-0 flex gap-2 flex-wrap ">
           {""}
@@ -306,7 +306,7 @@ export default function Address() {
                 <Card
                   color="transparent"
                   shadow={false}
-                  className="w-full lg:w-96 h-60  bg-gray-100 rounded-none overflow-hidden"
+                  className="w-full lg:w-96 lg:h-60  bg-gray-100 rounded-none overflow-hidden w-auto h-auto"
                 >
                   <CardBody className="p-4 text-center overflow-auto">
                     <div className="flex flex-row">

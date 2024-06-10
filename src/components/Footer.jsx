@@ -3,11 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 const LINKS = [
   {
     title: "MAY WE HELP YOU?",
-    items: ["Product Care", "Contact"],
+    items: ["Product Care", "Contact", "Cancellation Policy"],
   },
   {
     title: "THE COMPANY",
-    items: ["About Us",  "Return Policy"],
+    items: ["About Us",  "Return Policy", "Terms & Conditions"],
   }
 ];
 
@@ -26,13 +26,13 @@ export function Footer() {
       case "About Us":
         navigate("/about-us");
         break;
-      case "FAQ's":
-        navigate("/Faqs");
+      case "Cancellation Policy":
+        navigate("/cancellation-policy");
         break;
       case "Product Care":
         navigate("/product-care");
         break;
-      case "Legal":
+      case "Terms & Conditions":
         navigate("/terms");
         break;
 
@@ -50,8 +50,8 @@ export function Footer() {
         }}
       >
         <div className="flex justify-between gap-8 flex-wrap lg:flex-nowrap lg:gap-4">
-          <Link to="/">
-            <img src="/white-logo.png" className="aspect-square h-auto" />
+          <Link to="/" className="w-full lg:w-auto">
+            <img src="/white-logo.png" className="aspect-square h-auto mx-auto" />
           </Link>
 
 
@@ -100,7 +100,7 @@ export function Footer() {
       <div className="flex w-full flex-col items-center justify-center bg-black py-4 md:flex-row md:justify-center">
         <Typography
           variant="small"
-          className="mb-4 text-center font-light text-white md:mb-0 text-[12px]"
+          className="mb-4 text-center font-light text-white mb-0 text-[12px]"
         >
           &copy; {currentYear}{" "}JJnP's. All Rights Reserved.
         </Typography>

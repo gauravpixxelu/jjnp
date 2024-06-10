@@ -57,7 +57,7 @@ export default function Orders() {
   const [selectedTab, setSelectedTab] = useState("all");
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(30);
-  const [activeTab, setActiveTab] = useState("productdetails");
+  const [activeTab, setActiveTab] = useState("all");
 
   const handleTabChange = (value) => {
     setSelectedTab(value);
@@ -200,15 +200,15 @@ export default function Orders() {
       </div>
 
 
-      <div className="flex flex-col items-center justify-between gap-4 md:flex-row py-8 px-8">
+      <div className="flex flex-col items-center p-4 justify-between gap-4 md:flex-row lg:py-8 lg:px-8">
         <Tabs value={activeTab} className="w-full md:w-max" >
           <TabsHeader>
             {TABS.map(({ label, value }) => (
               <Tab
                 key={value}
                 value={value}
-                onClick={() => handleTabChange(value)}
-                className={`bg-white h-8 px-8 shadow-none ${activeTab === value ? "active-op" : ""}`}
+                onClick={() => handleTabClick(value)}
+                className={`bg-white h-10 px-8 w-28 shadow-none ${activeTab === value ? "active-op" : ""}`}
               >
                {label}
               </Tab>
@@ -250,18 +250,18 @@ export default function Orders() {
           ))}
         </div>
       ) : (
-        <div className="flex flex-wrap gap-2 lg:gap-6 items-center justify-center w-88 py-8 px-8">
+        <div className="flex flex-wrap p-4 gap-2 lg:gap-6 items-center justify-center w-88 lg:py-8 lg:px-8">
           {filteredRows.map((item, index) => (
             <Card
               ref={addtoRefs}
               key={index}
               color="transparent"
               shadow={false}
-              className="   cursor-pointer w-96 p-2 bg-gray-100 rounded-none rflow-auto overflow-auto mb-4 lg:hover:-translate-y-2 duration-300 hover:bg-gray-300"
+              className="cursor-pointer w-96 p-4 bg-gray-100 rounded-md rflow-auto overflow-auto mb-4 lg:hover:-translate-y-2 duration-300 hover:bg-gray-300"
             >
               <Typography
                 variant="h5"
-                className="mb-5 flex gap-1 items-center "
+                className="mb-5 flex gap-1 items-center font-[18px] text-black justify-center"
               >
                 {item.deliveryStatus === "Delivered" ? (
                   <CheckBadgeIcon className="h-5 w-5 text-black" />
@@ -307,21 +307,20 @@ export default function Orders() {
                         />
                       )}
 
-                      <div className="text-center ml-auto mr-auto mt-auto mb-auto text-md">
+                      <div className="ml-auto mr-auto mt-auto mb-auto text-md">
+                      <p className="text-justify text-black font-bold">
+                            {order.title}
+                          </p>
                         <p className="text-black">
                           {order.price.toLocaleString("en-IN", {
                             style: "currency",
                             currency: "INR",
                           })}
                         </p>
-                        <p>
-                          <p className="text-justify text-black">
-                            {order.title}
-                          </p>
+                         
                           <p className="text-justify text-black">
                             {order.color}, {order.size}
                           </p>
-                        </p>
                       </div>
                     </div>
                   </div>

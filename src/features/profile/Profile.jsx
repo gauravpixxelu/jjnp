@@ -253,11 +253,11 @@ export default function Profile() {
           </div>
         </div>  
 
-      <div className="hidden lg:flex mt-16 mb-16 mx-8" ref={addtoRefs}>
+      <div className="m-4 lg:my-16 lg:mx-8 " ref={addtoRefs}>
         <div className="w-full">
           <div>
             <Card className=" rounded-lg bg-white shadow-none ">
-              <div className="flex flex-wrap w-full items-center justify-between">
+              <div className="flex items-center justify-center flex-wrap gap-10">
                 {[
                   {
                     mainLabel: "Profile",
@@ -271,8 +271,14 @@ export default function Profile() {
                     mainLabel: "Orders",
                     subLabels: ["View all orders"],
                   },
-                  { mainLabel: "Wishlist", subLabels: ["Saved items"] },
-                  { mainLabel: "Log Out", subLabels: ["You will be missed"] },
+                  { 
+                    mainLabel: "Wishlist", 
+                    subLabels: ["Saved items"] 
+                  },
+                  { 
+                    mainLabel: "Log Out", 
+                    subLabels: ["You will be missed"] 
+                  },
                 ].map(({ mainLabel, subLabels = [] }, key) => (
                   <div key={key}>
                     <div

@@ -194,4 +194,7 @@ div[role="tabpanel"] {
   .videogd {
     height: auto;
   }
+  .radio-gd + span {
+    left: 23%;
+}
 }

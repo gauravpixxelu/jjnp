@@ -362,7 +362,7 @@ export default function OrderDetails() {
 
 
 
-      <div className="relative m-8">
+      <div className="relative m-4 lg:m-8 w-auto">
         <Card
           color="transparent"
           shadow={false}
@@ -377,8 +377,8 @@ export default function OrderDetails() {
             {order.products.map((item, index) => (
               <CardBody key={index} className="w-full">
                 <div>
-                  <div className="flex gap-2 items-center justify-between">
-                    <div className="">
+                  <div className="flex gap-2 items-center justify-between flex-wrap lg:flex-nowrap">
+                    <div className="w-full lg:w-auto">
                       <p className="mb-4 inline-block text-xl">Product Summary</p>
                       <Typography variant="h4">
                         <span className="text-justify text-black flex items-center gap-1 font-bold">

@@ -76,7 +76,7 @@ export default function ViewProduct(props) {
   const [cartOpen, setCartOpen] = useState(false);
   const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
   const [wishlist, setWishlist] = useState([]);
-  const [activeTab, setActiveTab] = useState("productdetails");
+  const [activeTab, setActiveTab] = useState("productdetails"); 
 
   const splideOption = {
     type: "loop",
