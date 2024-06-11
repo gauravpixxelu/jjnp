@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 const LINKS = [
   {
     title: "MAY WE HELP YOU?",
-    items: ["Product Care", "Contact", "Cancellation Policy"],
+    items: ["Product Care", "Contact"],
   },
   {
     title: "THE COMPANY",
