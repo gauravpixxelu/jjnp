@@ -57,7 +57,7 @@ export default function PlaceOrder() {
 
   const amount = parseInt(cartTotal) * 100;
   const currency = "INR";
-  const receiptId = "noms";
+  const receiptId = "JJnP's";
 
   const paymentHandler = async (e) => {
     if (cartTotal == 0) {
@@ -90,11 +90,10 @@ export default function PlaceOrder() {
     console.log("pree:");
     console.log(res);
     var options = {
-      key: "rzp_test_7u3EJtosigvghN", // Enter the Key ID generated from the Dashboard
+      key: "rzp_live_ic4TgLDfatm82g", // Put the key in environemt variable
       amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
       currency,
-      name: "Noms Corp", //your business name
-      description: "Test Transaction",
+      name: "JJnP's Corp", //your business name
       image: "/black-logo.png",
       order_id: res.data.order.id, //This is a sample Order ID. Pass the id obtained in the response of Step 1
       handler: async function (response) {
@@ -146,7 +145,7 @@ export default function PlaceOrder() {
         const paymentId = response.error.metadata.payment_id;
 
         const deleteOrderResponse = await fetch(
-          "http://localhost:3000/api/order/deleteorder",
+          `${process.env.REACT_APP_API_URL}/order/deleteorder`,
           {
             method: "DELETE",
             headers: {

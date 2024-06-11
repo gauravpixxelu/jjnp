@@ -26,9 +26,6 @@ export function Footer() {
       case "About Us":
         navigate("/about-us");
         break;
-      case "Cancellation Policy":
-        navigate("/cancellation-policy");
-        break;
       case "Product Care":
         navigate("/product-care");
         break;

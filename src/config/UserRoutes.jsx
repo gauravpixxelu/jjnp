@@ -88,11 +88,7 @@ function UserRoutes() {
         element={<OTPFormWithNavbar />}
         onChange={(e) => handleRouteChange(e.pathname)}
       />
-      <Route
-        path="cancellation-policy"
-        element={<CancellationPolicyWithNavbar />}
-        onChange={(e) => handleRouteChange(e.pathname)}
-      />
+
       <Route
         path="/account"
         element={<ProtectedAccount />}
