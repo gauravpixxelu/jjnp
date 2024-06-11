@@ -26,7 +26,6 @@ import AboutUs from "../components/AboutUs";
 import TermsnPrivacy from "../components/TermsnPrivacy";
 import ReturnPolicy from "../components/ReturnPolicy";
 import OTPForm from "../features/OTPForm";
-import CancellationPolicy from "../components/CancellationPolicy";
 
 
 function UserRoutes() {
@@ -59,7 +58,6 @@ function UserRoutes() {
   const TermsnPrivacyWithNavbar = withNavbar(TermsnPrivacy);
   const ReturnPolicyWithNavbar = withNavbar(ReturnPolicy);
   const OTPFormWithNavbar = withNavbar(OTPForm);
-  const CancellationPolicyWithNavbar = withNavbar(CancellationPolicy);
 
   //protected routes
   const ProtectedAccount = withAuth(ProfileWithNavbar);
