@@ -24,7 +24,7 @@ export default function TermsnPrivacy() {
 
       <div className="mx-auto max-w-[1270px] py-8 px-4 lg:py-16">
         <section className="relative">
-        <h4 className="text-black mb-2 text-[20px] font-bold">Cancellation Policy </h4>
+        {/* <h4 className="text-black mb-2 text-[20px] font-bold">Cancellation Policy </h4>
         <p className="text-gray-600 mb-4 text-[16px]">For the purpose of these Terms and Conditions, The term "we", "us", "our" used anywhere on this page shall mean JJNP'S FASHION PRIVATE LIMITED, whose registered/operational office is  Kamte Nagar Rd, Kondhwa Budruk, Pune, Maharashtra Pune MAHARASHTRA 411048 . "you", “your”, "user", “visitor” shall mean any natural or legal person who is visiting our website and/or agreed to purchase from us.</p>
           <p className="text-black  mb-2 text-[16px] font-bold">Your use of the website and/or purchase from us are governed by following Terms and Conditions:</p>
           <p className="text-gray-600 mb-4 text-[16px]">The content of the pages of this website is subject to change without notice.</p>
@@ -44,7 +44,7 @@ export default function TermsnPrivacy() {
           <p className="text-gray-600 mb-4 text-[16px]">In case you feel that the product received is not as shown on the site or as per your expectations, you must bring it to the notice of our customer service within 2 days of receiving the product. The Customer Service Team after looking into your complaint will take an appropriate decision.</p>
           <p className="text-gray-600 mb-4 text-[16px]">In case of complaints regarding products that come with a warranty from manufacturers, please refer the issue to them.</p>
           <p className="text-gray-600 mb-4 text-[16px]">In case of any Refunds approved by the JJNP'S FASHION PRIVATE LIMITED, it’ll take 1-2 days for the refund to be processed to the end customer.</p>
-          <p className="text-gray-600 mb-4 text-[16px]">For domestic buyers, orders are shipped through registered domestic courier companies and /or speed post only. Orders are shipped within 0-7 days or as per the delivery date agreed at the time of order confirmation and delivering of the shipment is subject to Courier Company/post office norms. JJNP'S FASHION PRIVATE LIMITED is not liable for any delay in delivery by the courier company / postal authorities and only guarantees to hand over the consignment to the courier company or postal authorities within 0-7 days from the date of the order and payment or as per the delivery date agreed at the time of order confirmation. Delivery of all orders will be to the address provided by the buyer. We can confirm our services on your mail ID as specified during registration. For any issues in utilizing our services, you may contact our <a href="mailto:noreply@jjnps.com" className="text-black font-bold">noreply@jjnps.com</a>.</p>
+          <p className="text-gray-600 mb-4 text-[16px]">For domestic buyers, orders are shipped through registered domestic courier companies and /or speed post only. Orders are shipped within 0-7 days or as per the delivery date agreed at the time of order confirmation and delivering of the shipment is subject to Courier Company/post office norms. JJNP'S FASHION PRIVATE LIMITED is not liable for any delay in delivery by the courier company / postal authorities and only guarantees to hand over the consignment to the courier company or postal authorities within 0-7 days from the date of the order and payment or as per the delivery date agreed at the time of order confirmation. Delivery of all orders will be to the address provided by the buyer. We can confirm our services on your mail ID as specified during registration. For any issues in utilizing our services, you may contact our <a href="mailto:noreply@jjnps.com" className="text-black font-bold">noreply@jjnps.com</a>.</p> */}
 
 
         <h4 className="text-black mb-2 text-[20px] font-bold">Terms and condition </h4>
@@ -57,7 +57,7 @@ export default function TermsnPrivacy() {
 
           <h4 className="text-black mb-2 text-[20px] font-bold">Refund</h4>
           <p className="text-gray-600 mb-4 text-[16px]">
-            Standard timeline Once the item has successfully returned it will take 5 to 7 days business days for refund.
+            Standard timeline Once the item has successfully returned it will take 5 to 7 business days for refund.
           </p>
           <p className="text-gray-600 mb-4 text-[16px]">
           Upon receipt of the returned item, it is our company policy to issue a refund within 5 to 7 business days. We appreciate your patience and understanding during this process. If you have any further questions or concerns, please don't hesitate to reach out to us. Thank you for your business. Upon successful return of the item in question, our standard company policy stipulates that a refund will be issued within a period of 5 to 7 business days. We kindly request your patience and understanding as we process your request. Should you have any further inquiries or concerns, please do not hesitate to contact us. We appreciate your patronage and look forward to serving you again in the future.
