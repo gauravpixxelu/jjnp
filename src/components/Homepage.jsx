@@ -57,6 +57,7 @@ export default function HomePage() {
               <Shop key="Shop" />
               <About key="About" />
 
+
               {/* <Shop key="Shop" /> */}
 
               {/* <NewArrival key="new arrival" /> */}

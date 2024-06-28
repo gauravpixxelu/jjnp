@@ -6,22 +6,18 @@ const categories = [
     {
         id: 1,
         image: '/category/category1.png',
-        link: '/productList',
     },
     {
         id: 2,
         image: '/category/category2.png',
-        link: '/productList',
     },
     {
         id: 3,
         image: '/category/category3.png',
-        link: '/productList',
     },
     {
         id: 4,
         image: '/category/category4.png',
-        link: '/productList',
     }
 ];
 
@@ -65,7 +61,7 @@ const Categories = () => {
                     >
                         <img className="w-full category-image" src={category.image} alt="category" />
                         <div className="absolute bottom-8 text-center w-full lg:bottom-20 z-10">
-                            <Link className="custom-button" to={category.link}>Shop Now</Link>
+                            {/* <Link className="custom-button" to={category.link}>Shop Now</Link> */}
                         </div>
                     </div>
                 ))}
