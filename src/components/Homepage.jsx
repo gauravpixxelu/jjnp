@@ -53,8 +53,11 @@ export default function HomePage() {
             <AnimatePresence>
               {Loaded ? null : <Loader />}
 
+             <h2>6/28/2024</h2>
+
               <Home key="home" />
               <Shop key="Shop" />
+
               <About key="About" />
 
 
