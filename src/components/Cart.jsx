@@ -30,6 +30,16 @@ export default function Cart({ handleDrawer, drawerOpen }) {
   };
 
   const handleRemoveItem = async (slug, quantity) => {
+
+    let check = isLoggedIn.isLoggedIn
+    if (!check) {
+      let backup = JSON.parse(localStorage.getItem('backUpItem'));
+      backup = backup.filter(product => product.slug !== slug);
+      localStorage.setItem('backUpItem', JSON.stringify(backup))
+      setCartItems(backup)
+      return;
+    }
+
     const accessToken1 = localStorage.getItem("accessToken");
     try {
       const response = await axios.delete(
@@ -46,7 +56,7 @@ export default function Cart({ handleDrawer, drawerOpen }) {
         }
       );
       handleGetCartData();
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const handleGetCartData = async () => {
@@ -71,6 +81,11 @@ export default function Cart({ handleDrawer, drawerOpen }) {
   };
 
   const handleClearCart = async () => {
+    let check = isLoggedIn.isLoggedIn
+    if (!check) {
+      setCartItems([]);
+      localStorage.removeItem('backUpItem');
+    }
     const accessToken1 = localStorage.getItem("accessToken");
     try {
       await axios.delete(
@@ -110,36 +125,48 @@ export default function Cart({ handleDrawer, drawerOpen }) {
   };
 
   const handleQuantityChange = async (index, newQuantity) => {
+    let check = isLoggedIn.isLoggedIn
     const updatedCartItems = [...cartItems];
+    if (!check) {
+
+    }
+    console.log(index, newQuantity)
+    // return
+
 
     // Calculate the difference between the new value and the current quantity
     const quantityDifference = newQuantity - updatedCartItems[index].quantity;
 
     // Update the quantity of the item
     updatedCartItems[index].quantity += quantityDifference;
-
+console.log(updatedCartItems[index].quantity,"updatedCartItems[index].quantity")
     if (updatedCartItems[index].quantity < 1) {
       // Remove the item from the cart if quantity becomes zero
       handleRemoveItem(updatedCartItems[index].slug, 1);
       return;
     }
-    // Update the database with the updated cart item
-    try {
-      const accessToken = localStorage.getItem("accessToken");
-      await axios.post(`${process.env.REACT_APP_API_URL}/products/addtocart`, {
-        token: accessToken,
-        slug: updatedCartItems[index].slug,
-        size: updatedCartItems[index].selectedSize,
-        color: updatedCartItems[index].selectedColor,
-        quantity: updatedCartItems[index].quantity,
-      });
-    } catch (error) {
-      // Handle error
-    }
 
+
+    if (check) {
+
+
+      // Update the database with the updated cart item
+      try {
+        const accessToken = localStorage.getItem("accessToken");
+        await axios.post(`${process.env.REACT_APP_API_URL}/products/addtocart`, {
+          token: accessToken,
+          slug: updatedCartItems[index].slug,
+          size: updatedCartItems[index].selectedSize,
+          color: updatedCartItems[index].selectedColor,
+          quantity: updatedCartItems[index].quantity,
+        });
+      } catch (error) {
+        // Handle error
+      }
+      handleGetCartData();
+    }
     setCartItems(updatedCartItems);
     getTotalPrice(); // Recalculate total price
-    handleGetCartData();
   };
 
   const handleRemoveItem1 = async (slug, quantity) => {
@@ -169,13 +196,18 @@ export default function Cart({ handleDrawer, drawerOpen }) {
     navigate("/productList");
   };
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn.isLoggedIn) {
       // Check if user is logged in
       handleGetCartData();
-    } else {
-      setCartItems([]); // Clear cart if user is not logged in
+    }
+    else {
+      let backup = JSON.parse(localStorage.getItem('backUpItem'));
+      let item = backup == null ? [] : backup
+      setCartItems(item); // Clear cart if user is not logged in
+
     }
   }, [handleDrawer, isLoggedIn]);
+
 
   useEffect(() => {
     getTotalPrice();

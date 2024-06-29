@@ -68,6 +68,9 @@ export default function Login() {
   const handleLogin = async () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("expiry");
+    let backup = JSON.parse(localStorage.getItem('backUpItem'));
+    let cart = backup !== null && backup.length ? true : false;
+
     setLoading(true);
 
     try {
@@ -76,6 +79,8 @@ export default function Login() {
         {
           email: formData.email,
           password: formData.password,
+          cart: cart,
+          cart_history: backup
         },
         {
           headers: {
@@ -122,6 +127,7 @@ export default function Login() {
       }
       setLoading(false);
     } finally {
+      localStorage.removeItem('backUpItem');
       setLoading(false);
     }
   };
@@ -180,57 +186,57 @@ export default function Login() {
         {loading && <Loader />}
 
         <div className="w-full" >
-          <img className="w-full" src="./login-img.jpg" alt=""/>
+          <img className="w-full" src="./login-img.jpg" alt="" />
         </div>
 
         <div className="w-full m-0 ">
-        <div className="max-w-[450px] m-auto p-4 lg:p-0">
-          <div className="space-y-2 mb-6">
-            <h1 className="text-[24px] font-normal">Login</h1>
-            <p className="text-gray-500 dark:text-gray-400 font-normal"> Enter your email below to login to your account </p>
-          </div>
-          {error && (
-            <Alert className="mb-2 bg-red-500 text-white">{error}</Alert>
-          )}
-          <div className="space-y-4">
-            <div className="space-y-2">
-              <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-              Email Address
-              </label>
-              <input
-                className="flex h-12 outline-none w-full bg-background p-4 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
-                type="email"
-                placeholder="Enter Email Address"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-              />
+          <div className="max-w-[450px] m-auto p-4 lg:p-0">
+            <div className="space-y-2 mb-6">
+              <h1 className="text-[24px] font-normal">Login</h1>
+              <p className="text-gray-500 dark:text-gray-400 font-normal"> Enter your email below to login to your account </p>
             </div>
-            <div className="space-y-2">
+            {error && (
+              <Alert className="mb-2 bg-red-500 text-white">{error}</Alert>
+            )}
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                  Email Address
+                </label>
+                <input
+                  className="flex h-12 outline-none w-full bg-background p-4 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
+                  type="email"
+                  placeholder="Enter Email Address"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="space-y-2">
                 <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                   Password
                 </label>
                 <div className="relative">
-                <input
-                  className="flex h-12 outline-none w-full bg-background p-4 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                />
-                <button
-                  type="button"
-                  className="absolute inset-y-0 right-0 flex items-center px-2"
-                  onClick={togglePasswordVisibility}
-                >
-                  {showPassword ? (
-                    <EyeIcon className="h-5 w-5 text-black" />
-                  ) : (
-                    <EyeSlashIcon className="h-5 w-5 text-black" />
-                  )}
-                </button>
-              </div>
+                  <input
+                    className="flex h-12 outline-none w-full bg-background p-4 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                  />
+                  <button
+                    type="button"
+                    className="absolute inset-y-0 right-0 flex items-center px-2"
+                    onClick={togglePasswordVisibility}
+                  >
+                    {showPassword ? (
+                      <EyeIcon className="h-5 w-5 text-black" />
+                    ) : (
+                      <EyeSlashIcon className="h-5 w-5 text-black" />
+                    )}
+                  </button>
+                </div>
                 <button
                   className="ml-auto block text-sm text-black underline underline-offset-4"
                   onClick={() => {
@@ -238,31 +244,31 @@ export default function Login() {
                   }}
                 >
                   Forgot your password?
-                </button>              
+                </button>
+              </div>
+            </div>
+            <div className="mt-4 flex justify-between font-semibold text-sm">
+            </div>
+            <div className="text-center md:text-left">
+              <Button
+                className="w-full h-12 w-full rounded-none shadow-none"
+                onClick={handleSubmit}
+              >
+                Login
+              </Button>
+            </div>
+            <div className="mt-4 text-center text-sm">
+              Don't have an account?{" "}
+              <button
+                className="text-red-600 underline underline-offset-4 uppercase"
+                onClick={() => {
+                  navigate("/register");
+                }}
+              >
+                Register
+              </button>
             </div>
           </div>
-          <div className="mt-4 flex justify-between font-semibold text-sm">
-          </div>
-          <div className="text-center md:text-left">
-            <Button
-              className="w-full h-12 w-full rounded-none shadow-none"
-              onClick={handleSubmit}
-            >
-              Login
-            </Button>
-          </div>
-          <div className="mt-4 text-center text-sm">
-            Don't have an account?{" "}
-            <button
-              className="text-red-600 underline underline-offset-4 uppercase"
-              onClick={() => {
-                navigate("/register");
-              }}
-            >
-              Register
-            </button>
-          </div>
-        </div>
         </div>
       </section>
       <div className="fixed bottom-4 right-4 transition ease-in-out delay-300 -translate-y-1 scale-110 duration-700 z-[61000]">

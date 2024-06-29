@@ -76,7 +76,7 @@ export default function ViewProduct(props) {
   const [cartOpen, setCartOpen] = useState(false);
   const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
   const [wishlist, setWishlist] = useState([]);
-  const [activeTab, setActiveTab] = useState("productdetails"); 
+  const [activeTab, setActiveTab] = useState("productdetails");
 
   const splideOption = {
     type: "loop",
@@ -112,15 +112,16 @@ export default function ViewProduct(props) {
   const product = location.state.product;
 
   const handleAddToCart = async () => {
+    if (!selectedSize || !selectedColor || selectedQty < 1) { // Check quantity too
+      setSizeError(!selectedSize);
+      setColorError(!selectedColor);
+      return;
+    } else {
+      setSizeError(false);
+      setColorError(false);
+    }
     if (isLoggedIn) {
-      if (!selectedSize || !selectedColor || selectedQty < 1) { // Check quantity too
-        setSizeError(!selectedSize);
-        setColorError(!selectedColor);
-        return;
-      } else {
-        setSizeError(false);
-        setColorError(false);
-      }
+
 
       const accessToken1 = localStorage.getItem("accessToken");
       try {
@@ -148,7 +149,51 @@ export default function ViewProduct(props) {
         setToastMessage("Sorry " + error.response.data.message);
       }
     } else {
-      navigate("/login");
+      // navigate("/login");
+
+      let backUpItem = JSON.parse(localStorage.getItem('backUpItem'));
+      let backuPArray = [];
+      let item = {
+        productId: product.id,
+        color: selectedColor,
+        price: product.discountedPrice,
+        quantity: selectedQty,
+        size: selectedSize,
+        slug: product.slug,
+        title: product.productName,
+
+      }
+      if (backUpItem == null) {
+        backuPArray.push(item);
+        localStorage.setItem('backUpItem', JSON.stringify(backuPArray));
+      }
+      else {
+
+        let check = backUpItem.some((item) => item.productId === product.id);
+        let newArray = backUpItem
+        if (check) {
+          let arry = newArray.map((item) => {
+            if (item.productId == product.id) {
+              return { ...item, quantity: selectedQty, color: selectedColor, size: selectedSize, };
+            }
+            return item;
+          })
+          localStorage.setItem('backUpItem', JSON.stringify(arry));
+        }
+        else {
+
+
+          newArray.push(item);
+
+          localStorage.setItem('backUpItem', JSON.stringify(newArray));
+        }
+      }
+
+      handleCartDrawer();
+      handleCartOpen();
+
+
+
     }
   };
 
