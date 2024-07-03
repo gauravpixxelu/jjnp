@@ -34,6 +34,8 @@ import {
   ArrowUturnRightIcon,
   ChatBubbleBottomCenterIcon,
   QuestionMarkCircleIcon,
+  ArrowPathIcon,
+  ExclamationCircleIcon
 } from "@heroicons/react/24/solid";
 import { useNavigate } from "react-router-dom";
 import AddProduct from "./products/AddProduct";
@@ -49,6 +51,8 @@ import Customers from "./Customers";
 import ReturnedOrders from "./orders/Returned/ReturnedOrders";
 import Complaints from "./Complaints";
 import ContactQueries from "./ConatactQueries";
+import ExchangeOrders from "./orders/Exchange/ExchangeOrders";
+import CancelledOrders from "./orders/Cancelled/CancelledOrer";
 export default function Admin() {
   const [open, setOpen] = React.useState(0);
 
@@ -171,6 +175,10 @@ export default function Admin() {
         return <Orders />;
       case "Returned Orders":
         return <ReturnedOrders />;
+      case "Exchange Orders":
+        return <ExchangeOrders />;
+      case "Cancelled Orders":
+        return <CancelledOrders />;
       case "Add New Product":
         return <AddProduct />;
       case "View All Products":
@@ -204,6 +212,8 @@ export default function Admin() {
               "Dashboard",
               "Orders",
               "Returned Orders",
+              "Exchange Orders",
+              "Cancelled Orders",
               "Products",
               "Customers",
               "Complaints",
@@ -216,9 +226,8 @@ export default function Admin() {
                   icon={
                     <ChevronDownIcon
                       strokeWidth={2.5}
-                      className={`mx-auto h-4 w-4 transition-transform ${
-                        open === 1 ? "rotate-180" : ""
-                      }`}
+                      className={`mx-auto h-4 w-4 transition-transform ${open === 1 ? "rotate-180" : ""
+                        }`}
                     />
                   }
                 >
@@ -268,11 +277,10 @@ export default function Admin() {
                 <ListItem
                   key={key}
                   onClick={() => handleMobileTabClick(label)}
-                  className={`flex items-center gap-2 rounded${
-                    activeTab === label
-                      ? " bg-blue-500 active:bg-blue-500 focus:bg-blue-500 text-white active:text-white focus:text-white"
-                      : " hover:bg-blue-500/10 focus:bg-blue-500/10 active:bg-blue-500/10"
-                  }`}
+                  className={`flex items-center gap-2 rounded${activeTab === label
+                    ? " bg-blue-500 active:bg-blue-500 focus:bg-blue-500 text-white active:text-white focus:text-white"
+                    : " hover:bg-blue-500/10 focus:bg-blue-500/10 active:bg-blue-500/10"
+                    }`}
                 >
                   <ListItemPrefix>{getPrefixIconByLabel(label)}</ListItemPrefix>
                   {label}
@@ -322,6 +330,8 @@ export default function Admin() {
                   "Dashboard",
                   "Orders",
                   "Returned Orders",
+                  "Exchange Orders",
+                  "Cancelled Orders",
                   "Products",
                   "Customers",
                   "Complaints",
@@ -334,9 +344,8 @@ export default function Admin() {
                       icon={
                         <ChevronDownIcon
                           strokeWidth={2.5}
-                          className={`mx-auto h-4 w-4 transition-transform ${
-                            open === 1 ? "rotate-180" : ""
-                          }`}
+                          className={`mx-auto h-4 w-4 transition-transform ${open === 1 ? "rotate-180" : ""
+                            }`}
                         />
                       }
                     >
@@ -387,11 +396,10 @@ export default function Admin() {
                     <ListItem
                       key={key}
                       onClick={() => handleTabClick(label)}
-                      className={`flex items-center gap-2 rounded${
-                        activeTab === label
-                          ? " bg-blue-500 active:bg-blue-500 focus:bg-blue-500 text-white active:text-white focus:text-white"
-                          : " hover:bg-blue-500/10 focus:bg-blue-500/10 active:bg-blue-500/10"
-                      }`}
+                      className={`flex items-center gap-2 rounded${activeTab === label
+                        ? " bg-blue-500 active:bg-blue-500 focus:bg-blue-500 text-white active:text-white focus:text-white"
+                        : " hover:bg-blue-500/10 focus:bg-blue-500/10 active:bg-blue-500/10"
+                        }`}
                     >
                       <ListItemPrefix>
                         {getPrefixIconByLabel(label)}
@@ -424,6 +432,10 @@ const getPrefixIconByLabel = (label) => {
       return <UserGroupIcon className="h-5 w-5" />;
     case "Returned Orders":
       return <ArrowUturnRightIcon className="h-5 w-5" />;
+    case "Exchange Orders":
+      return <ArrowPathIcon className="h-5 w-5" />;
+    case "Cancelled Orders":
+      return <ExclamationCircleIcon className="h-5 w-5" />;
     case "Complaints":
       return <QuestionMarkCircleIcon className="h-5 w-5" />;
     case "Contact Queries":

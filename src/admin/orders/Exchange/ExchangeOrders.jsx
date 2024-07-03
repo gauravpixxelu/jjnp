@@ -16,21 +16,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-// const TABS = [
-//   {
-//     label: "All",
-//     value: "all",
-//   },
-//   {
-//     label: "Paid",
-//     value: "paid",
-//   },
-//   {
-//     label: "Pending",
-//     value: "pending",
-//   },
-// ];
-
 const TABLE_HEAD = [
   "Product",
   "Amount",
@@ -42,7 +27,7 @@ const TABLE_HEAD = [
   "More Details",
 ];
 
-export default function Orders() {
+export default function ExchangeOrders() {
   const navigate = useNavigate();
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -72,7 +57,7 @@ export default function Orders() {
   };
 
   const handleOrderClick = (order) => {
-    navigate(`/manageOrder/${order.orderId}`, { state: { order: order } });
+    navigate(`/manageReturnOrder/${order.orderId}`, { state: { order: order } });
   };
 
   const handleGetOrdersData = async () => {
@@ -85,12 +70,13 @@ export default function Orders() {
           },
         }
       );
-      console.log(response,"response")
-      const sortedOrders = response.data.orders.sort((a, b) => {
-        const dateA = new Date(a.createdAt);
-        const dateB = new Date(b.createdAt);
-        return dateB - dateA;
-      });
+      const sortedOrders = response.data.orders
+        .filter((order) => order.deliveryStatus === "Returned") // Filter only returned orders
+        .sort((a, b) => {
+          const dateA = new Date(a.createdAt);
+          const dateB = new Date(b.createdAt);
+          return dateB - dateA;
+        });
       setTableRows(sortedOrders);
     } catch (error) {
       console.error("Error:", error);
@@ -106,27 +92,15 @@ export default function Orders() {
       <div className="mb-8 flex items-center justify-between gap-8">
         <div>
           <Typography variant="h5" color="blue-gray">
-            Orders list
+          Exchange Orders
+        
           </Typography>
           <Typography color="gray" className="mt-1 font-normal">
-            See information about all orders
+            See information about returned orders
           </Typography>
         </div>
       </div>
       <div className="flex flex-col items-center justify-between gap-4 md:flex-row mb-10">
-        {/* <Tabs value="all" className="w-full md:w-max">
-          <TabsHeader>
-            {TABS.map(({ label, value }) => (
-              <Tab
-                key={value}
-                value={value}
-                onClick={() => setSelectedTab(value)}
-              >
-                &nbsp;&nbsp;{label}&nbsp;&nbsp;
-              </Tab>
-            ))}
-          </TabsHeader>
-        </Tabs> */}
         <div className="w-full md:w-72">
           <Input
             label="Search"
