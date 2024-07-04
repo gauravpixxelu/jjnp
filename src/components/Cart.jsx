@@ -130,7 +130,8 @@ export default function Cart({ handleDrawer, drawerOpen }) {
     if (!check) {
 
     }
-    console.log(index, newQuantity)
+    console.log(updatedCartItems,"")
+    console.log(index, newQuantity )
     // return
 
 

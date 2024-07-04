@@ -62,16 +62,16 @@ export default function ReturnedOrders() {
 
   const handleGetOrdersData = async () => {
     try {
-      const response = await axios.get(
+      const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/admin/ordersAdmin/getorders`,
+        { returned: true },
         {
           headers: {
             "Content-Type": "application/json",
           },
         }
       );
-      const sortedOrders = response.data.orders
-        .filter((order) => order.deliveryStatus === "Returned") // Filter only returned orders
+      const sortedOrders = response.data.returnOrders // Filter only returned orders
         .sort((a, b) => {
           const dateA = new Date(a.createdAt);
           const dateB = new Date(b.createdAt);
@@ -205,8 +205,8 @@ export default function ReturnedOrders() {
                         order.status === "paid"
                           ? "green"
                           : order.status === "pending"
-                          ? "blue"
-                          : "deep-orange"
+                            ? "blue"
+                            : "deep-orange"
                       }
                     />
                   </div>

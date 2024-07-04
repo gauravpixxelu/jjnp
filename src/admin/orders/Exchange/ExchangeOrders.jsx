@@ -62,16 +62,16 @@ export default function ExchangeOrders() {
 
   const handleGetOrdersData = async () => {
     try {
-      const response = await axios.get(
+      const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/admin/ordersAdmin/getorders`,
+        { exchange: true },
         {
           headers: {
             "Content-Type": "application/json",
           },
         }
       );
-      const sortedOrders = response.data.orders
-        .filter((order) => order.deliveryStatus === "Returned") // Filter only returned orders
+      const sortedOrders = response.data.exchangeOrders // Filter only returned orders
         .sort((a, b) => {
           const dateA = new Date(a.createdAt);
           const dateB = new Date(b.createdAt);
