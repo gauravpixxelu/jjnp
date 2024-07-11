@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+@font-face {
+  font-family: 'Axiforma';
+  src: url('Axiforma-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Axiforma';
+  src: url('Axiforma-ExtraBold.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Axiforma';
+  src: url('Axiforma-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Axiforma';
+  src: url('Axiforma-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Axiforma';
+  src: url('Axiforma-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Axiforma';
+  src: url('Axiforma-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Axiforma Book';
+  src: url('Axiforma-Book.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Axiforma';
+  src: url('Axiforma-Light.woff') format('woff');
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Axiforma';
+  src: url('Axiforma-Thin.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+} */
+
+
+.slick-slide div {
+  outline: 0;
+}
+.slick-slide div {
+  outline: 0;
+}
+.slick-slider .slick-arrow {
+  color: #000;
+  border: 1px solid #000;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  padding: 15px;
+  z-index: 99;
+}
+.slick-slider .slick-prev {
+  left: 30px;
+}
+.slick-slider .slick-next {
+  right: 30px;
+}
+* {
+  font-family: "DM Sans", sans-serif !important;  
+}
+body {
+  overflow-x: hidden;
+}
+
+.sticky-nav {
+  position: fixed;
+  width: 100%;
+  background: #FAFAFA;
+  box-shadow: 0 12px 24px 0 rgb(0 0 0 / 5%);
+  top: 0;
+}
+
+.price {
+  font-family: "Ubuntu Sans", sans-serif !important;  
+}
+.bg-FBFBFB {
+  background: #FBFBFB;
+}
+ul[role="tablist"] li[role="tab"].active-op div {
+  color: #fff;
+}
+
+ul[role="tablist"] {
+  padding: 0;
+}
+
+ul[role="tablist"] li[role="tab"] {
+  padding: 0;
+  border: 1px solid #000;
+  border-left: 0;
+}
+
+ul[role="tablist"] li[role="tab"] .absolute {
+  border-radius: 0;
+  box-shadow: 0 0 0 0 #fff;
+  background: #000;  
+  transform: none !important;
+}
+.sticky {
+  z-index: 9999;
+}
+ul[role="tablist"] li[role="tab"]:first-child {
+  border-left: 1px solid #000;
+}
+
+div[role="tabpanel"] {
+  padding: 0;
+  margin-top: 25px;
+}
+
+.videogd {
+  height: 600px;
+  width: 100%;
+  object-fit: cover;
+}
+
+
+
+.category-item {
+  transition: transform 0.5s ease-in-out;
+}
+
+.category-image {
+  transform: scale(1.1);
+  transition: transform 0.5s ease-in-out;
+}
+
+.category-item.scale-to-100 .category-image {
+  transform: scale(1);
+}
+
+.custom-button {
+  display: inline-block;
+  background:rgba(150, 150, 150, 0.15);  /* Semi-transparent background */
+  border: 1px solid #fff;  /* White border */
+  color: #fff;  /* Text color */
+  font-size: 14px;
+  font-weight: normal;
+  padding: 15px 50px;  /* Padding */
+  text-transform: uppercase;  /* Uppercase text */
+  transition: transform 0.3s ease, background 0.3s ease;  /* Smooth transitions */
+  backdrop-filter: blur(5px);  /* Blur effect */
+}
+
+.category-item:before {
+  content: '';
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 9;
+  background-image: linear-gradient(to bottom, #0000 0%, #0000004d 100%);
+}
+
+.custom-button:hover {
+  transform: scale(0.95);  /* Slightly shrink on hover */
+  background:  rgba(150, 150, 150, 0.15);  /* Slightly more opaque background */
+}
+
+.gd span svg {
+  display: none;
+}
+
+
+@media screen and (max-width:767px) {
+  .videogd {
+    height: auto;
+  }
+  .radio-gd + span {
+    left: 23%;
+}
+}

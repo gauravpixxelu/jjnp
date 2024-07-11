@@ -1,0 +1,22 @@
+/* Styles.css */
+.bannervideo {
+  height: 100vh; 
+  width: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+@media (max-width: 768px) {
+  .mobile\:h-screen {
+    height: 100vh;
+    object-fit: cover;
+  }
+  .relative {
+    position: relative;
+    width: 100%;
+  }
+
+  .bannervideo {
+    height: 40vh; 
+  }
+}
