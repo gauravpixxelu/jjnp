@@ -17,14 +17,14 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const TABLE_HEAD = [
-    "Product",
-    "Amount",
-    "Customer Name",
+    "Order Id",
+    "Cancel Reason",
+    "Explanation",
     "Placed Date",
-    "Address",
     "Payment Status",
     "Order Status",
-    "More Details",
+    "Refund Remark",
+    "More Details"
 ];
 
 export default function CancelledOrders() {
@@ -57,21 +57,40 @@ export default function CancelledOrders() {
     };
 
     const handleOrderClick = (order) => {
-        navigate(`/manageReturnOrder/${order.orderId}`, { state: { order: order } });
+        handleGetOrdersData(order.orderId)
+        // navigate(`/manageReturnOrder/${order.orderId}`, { state: { order: order } });
     };
 
-    const handleGetOrdersData = async () => {
+    const handleGetOrdersData = async (orderId) => {
+        let body;
+        if (orderId == undefined) {
+            body = {
+                cancel: true
+            }
+        }
+        else {
+            body = {
+                
+                orderId: orderId == undefined ? "" : orderId,
+            }
+        }
         try {
             const response = await axios.post(
                 `${process.env.REACT_APP_API_URL}/admin/ordersAdmin/getorders`,
-                { cancel: true },
+                body,
                 {
                     headers: {
                         "Content-Type": "application/json",
                     },
                 }
             );
-            const sortedOrders = response.data.cancelOrders // Filter only returned orders
+            if (orderId !== undefined) {
+                let order = response.data.orders
+                console.log(order);
+                navigate(`/manageOrder/${order.orderId}?from="cancel"`, { state: { order: order } });
+                return;
+            }
+            const sortedOrders = response.data.orders
                 .sort((a, b) => {
                     const dateA = new Date(a.createdAt);
                     const dateB = new Date(b.createdAt);
@@ -130,27 +149,27 @@ export default function CancelledOrders() {
                         </tr>
                     </thead>
                     <tbody>
-                        {currentItems.map((order, index) => (
-                            <tr key={index}>
+                        {currentItems.map((product, productIndex) => (
+                            <tr key={productIndex}>
                                 <td className="p-4 border-b border-blue-gray-50">
-                                    {order.products.map((product, productIndex) => (
-                                        <div key={productIndex}>
-                                            <Typography
-                                                variant="small"
-                                                color="blue-gray"
-                                                className="font-normal"
-                                            >
-                                                {product.title}
-                                            </Typography>
-                                            <Typography
-                                                variant="small"
-                                                color="blue-gray"
-                                                className="font-normal opacity-70 uppercase"
-                                            >
-                                                {product.size}, {product.color}
-                                            </Typography>
-                                        </div>
-                                    ))}
+                                    {/* {order.products.map((product, productIndex) => ( */}
+                                    <div key={productIndex}>
+                                        <Typography
+                                            variant="small"
+                                            color="blue-gray"
+                                            className="font-normal"
+                                        >
+                                            {product.orderId}
+                                        </Typography>
+                                        {/* <Typography
+                                            variant="small"
+                                            color="blue-gray"
+                                            className="font-normal opacity-70 uppercase"
+                                        >
+                                            {product.size}, {product.color}
+                                        </Typography> */}
+                                    </div>
+                                    {/* ))} */}
                                 </td>
                                 <td className="p-4 border-b border-blue-gray-50">
                                     <div className="flex flex-col">
@@ -159,7 +178,7 @@ export default function CancelledOrders() {
                                             color="blue-gray"
                                             className="font-normal"
                                         >
-                                            {order.amount}
+                                            {product.cancelReason}
                                         </Typography>
                                     </div>
                                 </td>
@@ -169,7 +188,7 @@ export default function CancelledOrders() {
                                         color="blue-gray"
                                         className="font-normal"
                                     >
-                                        {order.name}
+                                        {product.explanation}
                                     </Typography>
                                 </td>
                                 <td className="p-4 border-b border-blue-gray-50">
@@ -178,48 +197,49 @@ export default function CancelledOrders() {
                                         color="blue-gray"
                                         className="font-normal"
                                     >
-                                        {new Date(order.createdAt).toLocaleDateString("en-US", {
+                                        {new Date(product.createdAt).toLocaleDateString("en-US", {
                                             day: "numeric",
                                             month: "long",
                                             year: "numeric",
                                         })}
                                     </Typography>
                                 </td>
-                                <td className="p-4 border-b border-blue-gray-50">
-                                    <Typography
-                                        variant="small"
-                                        color="blue-gray"
-                                        className="font-normal"
-                                    >
-                                        {order.city}, {order.state}, {order.address},{" "}
-                                        {order.pincode}
-                                    </Typography>
-                                </td>
+                               
                                 <td className="p-4 border-b border-blue-gray-50">
                                     <div className="w-max">
                                         <Chip
                                             variant="ghost"
                                             size="sm"
-                                            value={order.status}
+                                            value={product.status}
                                             color={
-                                                order.status === "paid"
+                                                product.status === "paid"
                                                     ? "green"
-                                                    : order.status === "pending"
+                                                    : product.status === "pending"
                                                         ? "blue"
                                                         : "deep-orange"
                                             }
                                         />
                                     </div>
                                 </td>
+                             
                                 <td className="p-4 border-b border-blue-gray-50">
                                     <div className="w-max">
-                                        <Chip variant="ghost" size="sm" value={order.deliveryStatus} />
+                                        <Chip variant="ghost" size="sm" value={'Cancelled'} />
                                     </div>
+                                </td>
+                                <td className="p-4 border-b border-blue-gray-50">
+                                    <Typography
+                                        variant="small"
+                                        color="blue-gray"
+                                        className="font-normal"
+                                    >
+                                        {product.refundRemark}
+                                    </Typography>
                                 </td>
                                 <td className="p-4 border-b border-blue-gray-50">
                                     <span
                                         className="flex items-center justify-center text-blue-700 cursor-pointer"
-                                        onClick={() => handleOrderClick(order)}
+                                        onClick={() => handleOrderClick(product)}
                                     >
                                         <p className="text-base">View Details</p>
                                         <ChevronRightIcon className="h-5 w-5" />

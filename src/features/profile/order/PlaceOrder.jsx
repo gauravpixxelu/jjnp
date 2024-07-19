@@ -90,7 +90,7 @@ export default function PlaceOrder() {
     console.log("pree:");
     console.log(res);
     var options = {
-      key: "rzp_live_ic4TgLDfatm82g", // Put the key in environemt variable
+      key: process.env.REACT_APP_RAZOR_PAY_KEY, // Put the key in environemt variable
       amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
       currency,
       name: "JJnP's Corp", //your business name
@@ -116,6 +116,7 @@ export default function PlaceOrder() {
         console.log("post:");
         console.log(jsonRes);
         if (jsonRes.success) {
+          
           navigate("/orders");
         }
       },

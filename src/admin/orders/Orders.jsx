@@ -72,6 +72,7 @@ export default function Orders() {
   };
 
   const handleOrderClick = (order) => {
+    console.log(order);
     navigate(`/manageOrder/${order.orderId}`, { state: { order: order } });
   };
 
@@ -92,6 +93,7 @@ export default function Orders() {
         const dateB = new Date(b.createdAt);
         return dateB - dateA;
       });
+  
       setTableRows(sortedOrders);
     } catch (error) {
       console.error("Error:", error);

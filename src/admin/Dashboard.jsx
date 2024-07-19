@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Chart from "chart.js/auto";
+import { updateDeliverType } from "../services/admin";
 
 export default function Dashboard() {
   const chartRef = useRef(null);
@@ -146,14 +147,30 @@ export default function Dashboard() {
       });
     }
   }, [products]);
+  const updateOrderHandler = () => {
+    let body = {
+      orderId: "order_OKKFG25mFbiifb",
+      updateDeliveryStatus: true,
+      deliveryStatus: 'Delivered'
 
+    }
+
+    updateDeliverType(body).then((data) => {
+      console.log(data)
+
+    }).catch(() => {
+
+    })
+
+
+  }
   return (
     <div className="flex flex-col lg:flex-row gap-3">
       <div className="p-3 w-fit h-20 rounded-lg bg-blue-200 flex flex-col items-center justify-center">
         <h2>Total Customers</h2>
         <h3>{customersCount}</h3>
       </div>
-
+      <button onClick={updateOrderHandler}>Update Orders</button>
       <div>
         <canvas ref={chartRef} />
       </div>

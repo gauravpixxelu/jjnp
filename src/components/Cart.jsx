@@ -131,7 +131,7 @@ export default function Cart({ handleDrawer, drawerOpen }) {
 
     }
     console.log(updatedCartItems,"")
-    console.log(index, newQuantity )
+    console.log(index, newQuantity)
     // return
 
 
@@ -199,7 +199,7 @@ console.log(updatedCartItems[index].quantity,"updatedCartItems[index].quantity")
   useEffect(() => {
     if (isLoggedIn.isLoggedIn) {
       // Check if user is logged in
-      handleGetCartData();
+      // handleGetCartData();
     }
     else {
       let backup = JSON.parse(localStorage.getItem('backUpItem'));

@@ -3,11 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 const LINKS = [
   {
     title: "MAY WE HELP YOU?",
-    items: ["Product Care", "Contact"],
+    items: [ "About Us", "Product Care", "Contact", ],
   },
   {
     title: "THE COMPANY",
-    items: ["About Us",  "Return Policy", "Terms & Conditions", "Cancellation Policy",],
+    items: [,  "Return Policy", "Terms & Conditions", "Privacy Policy", "Cancellation Policy",],
   }
 ];
 
@@ -35,7 +35,9 @@ export function Footer() {
       case "Cancellation Policy":
         navigate("/cancellation-policy");
         break;
-
+      case "Privacy Policy":
+          navigate("/privacy-policy");
+        break;
 
       default:
     }

@@ -63,6 +63,7 @@ export default function Orders() {
     setSelectedTab(value);
   };
   const handlGetOrders = async () => {
+    console.log('entered')
     setLoading(true);
     const accessToken1 = localStorage.getItem("accessToken");
 
@@ -71,6 +72,8 @@ export default function Orders() {
         `${process.env.REACT_APP_API_URL}/profile/getorders`,
         {
           token: accessToken1,
+          page: 1,
+          limit: 10,
         },
         {
           headers: {
@@ -79,15 +82,20 @@ export default function Orders() {
         }
       );
       // Sort orders by created time
+      console.log('yes entered')
+      console.log(response.data);
       const sortedOrders = response.data.orders.sort((a, b) => {
         return new Date(b.createdAt) - new Date(a.createdAt);
       });
+      
       setOrdersData(sortedOrders);
       setLoading(false);
       setProgress(100);
     } catch (error) {
+      console.log('error zone')
       setLoading(false);
     } finally {
+      console.log('final zone')
       setLoading(false);
     }
   };

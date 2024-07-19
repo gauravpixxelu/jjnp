@@ -11,14 +11,18 @@ import {
   Badge,
   Separator,
   Chip,
+  Textarea,
 } from "@material-tailwind/react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import html2pdf from "html2pdf.js";
 import axios from "axios";
 import Toast from "../../components/Toast";
+import { updateDeliverType } from "../../services/admin";
 
 export default function ManageOrderDetails() {
   const location = useLocation();
+  const navigate= useNavigate();
+  const [searchParams] = useSearchParams();
   const order = location.state.order;
   const product = order.products;
   const contentRef = useRef(null);
@@ -27,6 +31,8 @@ export default function ManageOrderDetails() {
   const classes = isLast ? "p-2" : "p-2 border-b border-blue-gray-50";
   const [invoiceGenerated, setInvoiceGenerated] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+  const [reason, setReason] = useState('')
+
 
   const handlePrint = () => {
     const content = `
@@ -92,9 +98,8 @@ export default function ManageOrderDetails() {
       
      <p>
       <b>Shipping/Billing Address</b> <br/>  <p style="text-align: justify">
-      ${order.name} <br/>${order.city},${order.state}, <br/>${
-      order.address
-    },<br/> ${order.pincode}
+      ${order.name} <br/>${order.city},${order.state}, <br/>${order.address
+      },<br/> ${order.pincode}
       </p>
        </p>
 
@@ -115,8 +120,8 @@ export default function ManageOrderDetails() {
         </thead>
         <tbody>
         ${product
-          .map(
-            (product) => `
+        .map(
+          (product) => `
           <tr key=${product.productId}>
             <td style="width: 40px; max-width: 40px; word-break: break-all;">
               ${product.quantity}
@@ -129,8 +134,8 @@ export default function ManageOrderDetails() {
             </td>
           </tr>
         `
-          )
-          .join("")}
+        )
+        .join("")}
         
         
           
@@ -139,9 +144,8 @@ export default function ManageOrderDetails() {
          <tr>
             <td style="width: 40px; max-width: 40px; word-break: break-all;"></td>
             <td style="width: 75px; max-width: 75px;"><b>Total:</b></td>
-            <td style="width: 50px; max-width: 40px; word-break: break-all;">${
-              order.amount
-            }</td>
+            <td style="width: 50px; max-width: 40px; word-break: break-all;">${order.amount
+      }</td>
           </tr>
         </tbody>
       </table>
@@ -273,8 +277,35 @@ export default function ManageOrderDetails() {
       setToastMessage("Failed to download invoice. Please try again later.");
     }
   };
+
+
+  const handleUpdateOrder = () => {
+    let body = {
+      orderId: order.orderId,
+      remark: reason,
+      cancel: true
+
+
+
+    }
+
+    updateDeliverType(body).then((data) => {
+
+      setToastMessage(data.data.message + "..!");
+
+
+      setTimeout(() => {
+        navigate('/admin')
+      }, 1000);
+    }).catch(() => {
+
+    })
+
+
+  }
   return (
     <div className="flex items-center justify-center p-2">
+      {console.log(searchParams, "searchParams")}
       <Card className="w-full p-3 border-2 border-gray-800 rounded-md">
         <div className="flex items-center justify-center p-2" ref={contentRef}>
           <CardBody className="space-y-6">
@@ -286,6 +317,8 @@ export default function ManageOrderDetails() {
                 <span>
                   {" "}
                   <span className="font-bold">Order ID:</span> {order.orderId}
+                  <br />
+                  <span className="font-bold">Payment ID:</span> {order.paymentId}
                 </span>
               </p>
             </div>
@@ -452,10 +485,27 @@ export default function ManageOrderDetails() {
                 </p>
               </Link>
             </div>
-            <Button variant="outlined">Refund</Button>
+            <Button onClick={() => window.open('https://accounts.razorpay.com/', "_blank")} variant="outlined">Refund</Button>
             <Button onClick={() => handleSaveInvoice()}>Save Invoice</Button>
           </div>
         </CardFooter>
+
+        <div className="">
+          <div className="flex  items-center space-x-2">
+
+            <Textarea
+              value={reason}
+              onChange={(e) =>
+                setReason(e.target.value)
+              }
+              label="Remark"
+              className="w-full rounded-none border border-black"
+              required
+            />
+          </div>
+
+          <Button onClick={() => handleUpdateOrder()}>Update order</Button>
+        </div>
       </Card>
       <div className="fixed bottom-4 right-4 transition ease-in-out delay-300 -translate-y-1 scale-110 duration-700 z-[61000]">
         {toastMessage && <Toast message={toastMessage} />}

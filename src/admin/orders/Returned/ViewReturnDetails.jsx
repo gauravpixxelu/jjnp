@@ -55,7 +55,7 @@ export default function ViewReturnedOrders() {
               <p className="">
                 <span>
                   {" "}
-                  <span className="font-bold">Order ID:</span> {order.orderId}
+                  <span className="font-bold">Orderdwd ID:</span> {order.orderId}
                 </span>
               </p>
             </div>

@@ -35,6 +35,7 @@ import {
   ArrowPathRoundedSquareIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { getProductBySlug } from "../../../services/user";
 
 const cancelReasons = [
   "Ordered wrong product",
@@ -76,6 +77,13 @@ export default function OrderDetails() {
   const [returnVideo, setReturnVideo] = useState(null);
   const [returnExplanation, setReturnExplanation] = useState("");
   const [complaintType, setComplaintType] = useState("");
+  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedColor, setSelectedColor] = useState("");
+  const [selectedQty, setSelectedQty] = useState(1); // Added state for quantity
+  const [coloursArray, setcoloursArray] = useState([]);
+  const [sizesArray, setSizesArray] = useState([]);
+  const [colorError, setColorError] = useState(false);
+  const [sizeError, setSizeError] = useState(false);
 
   const handleComplaintTypeChange = (e) => {
     setComplaintType(e.target.value);
@@ -144,8 +152,53 @@ export default function OrderDetails() {
   // Set active step based on order status when component mounts
   useEffect(() => {
     setActiveStepByStatus(order.deliveryStatus);
+    // order.deliveryStatus
+    getproduct()
   }, [order.status]);
 
+
+  const handleExchangeOrder = async () => {
+    // setLoading(true);
+    const accessToken1 = localStorage.getItem("accessToken");
+
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/order/exchangeorder`,
+        {
+          token: accessToken1,
+          originalProductId: order.products[0].productId,
+          orderId: order.orderId,
+          newSize: selectedSize,
+          newColor: selectedColor,
+          exchangeQuantity: selectedQty
+
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      setToastMessage(response.data.message);
+      setCancelExplanation("");
+      setCancelReason("");
+      setTimeout(() => {
+        navigate("/orders");
+      }, 1000);
+
+      // setFormData({ ...formData, userId });
+      // localStorage.setItem("accessToken", response.data.authToken);
+      // setToken(response.data.authToken);
+      // setLoading(false);
+      // navigate("/");
+    } catch (error) {
+      setToastMessage("Sorry " + error.response.data.message);
+
+      // setLoading(false);
+    } finally {
+      // setLoading(false);
+    }
+  };
   const handleCancelOrder = async () => {
     // setLoading(true);
     const accessToken1 = localStorage.getItem("accessToken");
@@ -340,9 +393,37 @@ export default function OrderDetails() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const decreaseQuantity = () => {
+    if (selectedQty > 1) {
+      setSelectedQty((prevQty) => prevQty - 1);
+    }
+  };
+
+  const increaseQuantity = () => {
+    setSelectedQty((prevQty) => prevQty + 1);
+  };
+
+  const getproduct = () => {
+    let slug = order.products[0].slug
+    let body = {
+      slug: slug
+    }
+    getProductBySlug(body).then((data) => {
+      if (data.data.success) {
+        let product = data.data.product
+
+        setcoloursArray(product.color)
+        setSizesArray(product.size)
+      }
+      //     const [coloursArray ,setcoloursArray] = useState([]);
+      // const [sizesArray ,setSizesArray] = useState([]);
+      console.log(data)
+    }).catch(() => { })
+  }
   return (
     <>
-
+      {console.log(order.status)}
       <div className="relative mb-2">
         <div className="bg-black h-[200px] flex items-center justify-center">
           <Typography
@@ -607,6 +688,7 @@ export default function OrderDetails() {
                   </Button> */}
               </div>
             </div>
+
             {order.deliveryStatus === "Delivered" && (
               <div className="flex flex-col gap-3">
                 <Button
@@ -777,6 +859,102 @@ export default function OrderDetails() {
                     </div>
                   </AccordionBody>
                 </Accordion>
+
+                <Accordion open={accordianOpen === 2} className="w-full">
+                  <AccordionHeader
+                    onClick={() => handleAccordianOpen(2)}
+                    className="text-sm"
+                  >
+                    Exchange order?
+                  </AccordionHeader>
+                  <AccordionBody className="">
+
+
+                    {/* echange order newly added */}
+                    <div className="flex flex-wrap lg:flex-nowrap gap-4">
+
+
+                      <div className="w-full">
+                        <h3 className="text-black text-[16px] font-bold lg:text-[20px]">Color</h3>
+                        <div className="flex gap-2 mt-1 lg:mt-2">
+                          {coloursArray.map((color, index) => (
+                            <label
+                              key={index}
+                              className="cursor-pointer inline-block w-auto h-auto border border-black relative"
+                            >
+                              <input
+                                type="radio"
+                                name="color"
+                                value={selectedColor}
+                                onChange={() => setSelectedColor(color)}
+                                checked={selectedColor === color}
+                                className="sr-only"
+                              />
+                              <span
+                                className={`block w-auto h-auto py-2 px-4 text-[12px] ${selectedColor === color ? `bg-black text-white` : ''}`}
+                              >{color}</span>
+                            </label>
+                          ))}
+                        </div>
+                        {colorError && <p className="text-red-500">Please select a color</p>}
+                      </div>
+
+
+                      <div className="w-full">
+                        <h3 className="text-black text-[16px] font-bold lg:text-[20px]">Size</h3>
+                        <div className="flex gap-2 mt-1 lg:mt-2">
+                          {sizesArray.map((size, index) => (
+                            <label
+                              key={index}
+                              className="cursor-pointer inline-block w-auto h-auto border border-black relative"
+                            >
+                              <input
+                                type="radio"
+                                name="size"
+                                value={selectedSize}
+                                onChange={() => setSelectedSize(size)}
+                                checked={selectedSize === size}
+                                className="sr-only"
+                              />
+                              <span
+                                className={`block w-auto h-auto py-2 px-4 text-[12px] ${selectedSize === size ? `bg-black text-white` : ''}`}
+                              >{size}</span>
+                            </label>
+                          ))}
+                        </div>
+                        {sizeError && <p className="text-red-500">Please select a size</p>}
+                      </div>
+
+                      <div className="w-full">
+                        <h3 className="text-black text-[16px] font-bold lg:text-[20px]">Quantity</h3>
+                        <div className="flex items-center mt-1 lg:mt-2">
+                          <button
+                            onClick={decreaseQuantity}
+                            className="px-3 py-1 bg-gray-200 rounded-md"
+                          >
+                            -
+                          </button>
+                          <span className="mx-3">{selectedQty}</span>
+                          <button
+                            onClick={increaseQuantity}
+                            className="px-3 py-1 bg-gray-200 rounded-md"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+
+                      <Button
+                        className="w-full mt-2"
+                        variant="text"
+                        onClick={() => handleExchangeOrder()}
+                      >
+                        Request for Exchange
+                      </Button>
+                    </div>
+                  </AccordionBody>
+                </Accordion>
+                {/* {exchange order newly added end} */}
               </div>
             )}
 
