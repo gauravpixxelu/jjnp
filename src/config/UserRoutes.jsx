@@ -27,6 +27,7 @@ import TermsnPrivacy from "../components/TermsnPrivacy";
 import CancellationPolicy from "../components/CancellationPolicy";
 import ReturnPolicy from "../components/ReturnPolicy";
 import OTPForm from "../features/OTPForm";
+import PrivacyPolicy from "../components/PrivacyPolicy";
 
 
 function UserRoutes() {
@@ -60,6 +61,7 @@ function UserRoutes() {
   const ReturnPolicyWithNavbar = withNavbar(ReturnPolicy);
   const CancellationPolicyWithNavbar = withNavbar(CancellationPolicy);
   const OTPFormWithNavbar = withNavbar(OTPForm);
+  const PrivacyPolicyWithNavbar = withNavbar(PrivacyPolicy);
 
   //protected routes
   const ProtectedAccount = withAuth(ProfileWithNavbar);
@@ -188,6 +190,11 @@ function UserRoutes() {
       <Route
         path="cancellation-policy"
         element={<CancellationPolicyWithNavbar />}
+        onChange={(e) => handleRouteChange(e.pathname)}
+      />
+      <Route
+        path="/privacy-policy"
+        element={<PrivacyPolicyWithNavbar />}
         onChange={(e) => handleRouteChange(e.pathname)}
       />
     </Routes>

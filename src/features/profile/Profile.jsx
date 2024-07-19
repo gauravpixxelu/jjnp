@@ -282,7 +282,7 @@ export default function Profile() {
                 ].map(({ mainLabel, subLabels = [] }, key) => (
                   <div key={key}>
                     <div
-                      className="hover:text-gray-900 cursor-pointer transition duration-300 ease-in-out w-80 items-center justify-center text-center rounded-md cursor-pointer transition duration-300 ease-in-out"
+                      className="chose-accound-details hover:text-gray-900 cursor-pointer transition duration-300 ease-in-out w-80 items-center justify-center text-center rounded-md cursor-pointer transition duration-300 ease-in-out"
                       onClick={() => handleDesktopTabClick(mainLabel)}
                     >
                       <div className="text-center">

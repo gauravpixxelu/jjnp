@@ -140,7 +140,11 @@ div[role="tabpanel"] {
 }
 
 
-
+.chose-accound-details {
+  border: 1px solid #ddd;
+  padding: 13px 0;
+  border-radius: 0;
+}
 .category-item {
   transition: transform 0.5s ease-in-out;
 }
@@ -197,4 +201,14 @@ div[role="tabpanel"] {
   .radio-gd + span {
     left: 23%;
 }
+}
+
+
+
+
+.flex.items-center.rounded-lg {
+  color: #fff;
+}
+.sticky-nav  .flex.items-center.rounded-lg {
+  color: #000;
 }
